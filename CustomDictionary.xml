@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Dictionary>
+    <Words>
+        <Recognized>
+            <Word>param</Word>
+            <Word>ajdotnet</Word>
+            <Word>github</Word>
+            <Word>xres</Word>
+            <Word>yres</Word>
+        </Recognized>
+        <Compound>
+            <Term CompoundAlternate="QueryAll">queryall</Term>
+        </Compound>
+    </Words>
+    <Acronyms>
+        <CasingExceptions>
+            <Acronym>ID</Acronym>
+        </CasingExceptions>
+        
+    </Acronyms>
+</Dictionary>
+

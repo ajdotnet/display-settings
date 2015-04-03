@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<helpItems xmlns="http://msh" schema="maml"
+		   xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+		   xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+		   xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+
+	<!-- 
+			get-displaysettings 
+	-->
+	<command:command>
+		<command:details>
+			<command:name>get-DisplaySettings</command:name>
+			<command:verb>get</command:verb>
+			<command:noun>DisplaySettings</command:noun>
+			<maml:description>
+				<maml:para>Gets the current or all available display settings.</maml:para>
+			</maml:description>
+		</command:details>
+		<maml:description>
+			<maml:para>Gets the current display settings or (if used with -all) all available display settings.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<command:syntaxItem>
+				<maml:name>get-DisplaySettings</maml:name>
+				<command:parameter position="0" required="false" globbing="false" pipelineInput="false">
+					<maml:name>all</maml:name>
+				</command:parameter>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<command:parameter position="0" required="false" globbing="false" pipelineInput="false">
+				<maml:name>all</maml:name>
+				<maml:description>
+					<maml:para>if specified, all available display settings are returned; if left out only the current display settings are displayed.</maml:para>
+					<dev:defaultValue>false</dev:defaultValue>
+				</maml:description>
+			</command:parameter>
+		</command:parameters>
+		<command:inputTypes>
+			<command:inputType>
+				<dev:type>
+					<maml:name>none.</maml:name>
+					<maml:description>
+						<maml:para>No values taken from the pipeline.</maml:para>
+					</maml:description>
+				</dev:type>
+			</command:inputType>
+		</command:inputTypes>
+		<command:returnValues>
+			<command:returnValue>
+				<dev:type>
+					<maml:name>DisplaySettings.Core.DisplayData</maml:name>
+					<maml:description>
+						<maml:para>display data</maml:para>
+					</maml:description>
+				</dev:type>
+				<maml:description>display data</maml:description>
+			</command:returnValue>
+		</command:returnValues>
+		<maml:alertSet>
+			<maml:title>Current node</maml:title>
+			<maml:alert>
+				<maml:para>If used with -all, the current node is indocated qith an asterisk.</maml:para>
+			</maml:alert>
+			<maml:title>Needed permssions</maml:title>
+			<maml:alert>
+				<maml:para>Necessary permissions have not been checked. If not met, this will likely produce an error.</maml:para>
+			</maml:alert>
+			<maml:title>multiple displays</maml:title>
+			<maml:alert>
+				<maml:para>Multiple displays and projectors not yet tested (much less supported ;-))</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<!--<command:examples>
+		</command:examples>-->
+		<maml:relatedLinks>
+			<maml:navigationLink>
+				<maml:linkText>set-DisplaySettings</maml:linkText>
+			</maml:navigationLink>
+		</maml:relatedLinks>
+	</command:command>
+
+	<!-- 
+			set-displaysettings 
+	-->
+	<command:command>
+		<command:details>
+			<command:name>set-DisplaySettings</command:name>
+			<command:verb>set</command:verb>
+			<command:noun>DisplaySettings</command:noun>
+			<maml:description>
+				<maml:para>Changes the current display settings.</maml:para>
+			</maml:description>
+		</command:details>
+		<maml:description>
+			<maml:para>Changes the current display settings. This is an action changing the system and can beaccompanied with the -WhatIf and -Force parameter.</maml:para>
+		</maml:description>
+		<command:syntax>
+			<command:syntaxItem>
+				<maml:name>set-DisplaySettings</maml:name>
+				<command:parameter position="0" required="true" globbing="false" pipelineInput="false">
+					<maml:name>width</maml:name>
+					<command:parameterValue required="true">int32</command:parameterValue>
+				</command:parameter>
+				<command:parameter position="1" required="true" globbing="false" pipelineInput="false">
+					<maml:name>height</maml:name>
+					<command:parameterValue required="true">int32</command:parameterValue>
+				</command:parameter>
+				<command:parameter position="2" required="false" globbing="false" pipelineInput="false">
+					<maml:name>colorDeepth</maml:name>
+					<command:parameterValue required="true">int32</command:parameterValue>
+				</command:parameter>
+				<command:parameter position="3" required="false" globbing="false" pipelineInput="false">
+					<maml:name>frequency</maml:name>
+					<command:parameterValue required="true">int32</command:parameterValue>
+				</command:parameter>
+			</command:syntaxItem>
+		</command:syntax>
+		<command:parameters>
+			<command:parameter required="true" position="0" globbing="false" pipelineInput="false">
+				<maml:name>width</maml:name>
+				<maml:description>
+					<maml:para>the screen width to be set.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true">in32</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="true" position="1" globbing="false" pipelineInput="false">
+				<maml:name>height</maml:name>
+				<maml:description>
+					<maml:para>the screen height to be set.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true">int32</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" position="2" globbing="false" pipelineInput="false">
+				<maml:name>colorDeepth</maml:name>
+				<maml:description>
+					<maml:para>the color deepth (in bits per pixel) to be set.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true">int32</command:parameterValue>
+				<dev:defaultValue>The current color deepth.</dev:defaultValue>
+				<dev:possibleValues>
+					<dev:possibleValue>
+						<dev:value>8</dev:value>
+						<maml:description>
+							<maml:para>8 bpp</maml:para>
+						</maml:description>
+					</dev:possibleValue>
+					<dev:possibleValue>
+						<dev:value>16</dev:value>
+						<maml:description>
+							<maml:para>16 bps</maml:para>
+						</maml:description>
+					</dev:possibleValue>
+					<dev:possibleValue>
+						<dev:value>32</dev:value>
+						<maml:description>
+							<maml:para>32 bps</maml:para>
+						</maml:description>
+					</dev:possibleValue>
+				</dev:possibleValues>
+			</command:parameter>
+			<command:parameter required="false" position="3" globbing="false" pipelineInput="false">
+				<maml:name>frequency</maml:name>
+				<maml:description>
+					<maml:para>the screen refresh rate (in Hertz).</maml:para>
+				</maml:description>
+				<command:parameterValue required="true">int32</command:parameterValue>
+				<dev:defaultValue>The current screen refresh rate.</dev:defaultValue>
+			</command:parameter>
+		</command:parameters>
+		<command:inputTypes>
+			<command:inputType>
+				<dev:type>
+					<maml:name>none.</maml:name>
+					<maml:description>
+						<maml:para>No values taken from the pipeline.</maml:para>
+					</maml:description>
+				</dev:type>
+			</command:inputType>
+		</command:inputTypes>
+		<command:returnValues>
+			<command:returnValue>
+				<dev:type>
+					<maml:name>none.</maml:name>
+					<maml:description>
+						<maml:para>No values written to the pipeline.</maml:para>
+					</maml:description>
+				</dev:type>
+				<maml:description>No values written to the pipeline.</maml:description>
+			</command:returnValue>
+		</command:returnValues>
+		<maml:alertSet>
+			<maml:title>Invalid value combinations</maml:title>
+			<maml:alert>
+				<maml:para>Only value combinations supported by the system can be set. Other combinations will be rejected.</maml:para>
+			</maml:alert>
+			<maml:title>Needed permssions</maml:title>
+			<maml:alert>
+				<maml:para>Necessary permissions have not been checked. If not met, this will likely produce an error.</maml:para>
+			</maml:alert>
+			<maml:title>multiple displays</maml:title>
+			<maml:alert>
+				<maml:para>Multiple displays and projectors not yet tested (much less supported ;-))</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<!--<command:examples>
+		</command:examples>-->
+		<maml:relatedLinks>
+			<maml:navigationLink>
+				<maml:linkText>get-DisplaySettings</maml:linkText>
+			</maml:navigationLink>
+		</maml:relatedLinks>
+	</command:command>
+</helpItems>

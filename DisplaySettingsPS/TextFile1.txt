@@ -1,0 +1,23 @@
+
+
+cmdlet:
++ parameter, verarbeitung, parameter-hilfe an einem ort
+	- nachteil weil unterschiedliche befehle sich parameter teilen
++ pipeline-support 
++ klare guidelines bzgl. fehlerhandlung, sicherheitsabfragen, etc.
++ freie formatierung der ausgabe 
+	- xml-file beherrschbar, kein xsd
+- gleicher parameter kann nicht mehrfach verwendet werden
+- deutlich komplexer
++ deutlich mehr features 
+- hilfe deutlich komplexer, kein xsd (und sehr redundant) => tool !?
+- DisplayData notwendig
+
+ 
+exe:
++ parameter-validierung und kombinationen flexibler/zentraler? (bei cmdlet attributes + im beginprocessing)
+	+ flexibler als parametersets
++/- unterscheidung argumente/switches
+- Ausgabe mußte geschrieben werden
++/- aktion muß über enum unterschieden werden
+
