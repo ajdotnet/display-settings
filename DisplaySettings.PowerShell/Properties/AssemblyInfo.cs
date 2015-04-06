@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ajdotnet")]
-[assembly: AssemblyProduct("DisplaySettingsPS")]
+[assembly: AssemblyProduct("DisplaySettings.PowerShell")]
 [assembly: AssemblyCopyright("Copyright © 2007 Alexander Jung")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

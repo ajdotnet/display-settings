@@ -2,7 +2,7 @@
 <Configuration>
 	<ViewDefinitions>
 		<View>
-			<Name>DisplaySettingsPS</Name>
+			<Name>DisplaySettings.PowerShell</Name>
 			<ViewSelectedBy>
 				<TypeName>DisplaySettings.Core.DisplayData</TypeName>
 			</ViewSelectedBy>
