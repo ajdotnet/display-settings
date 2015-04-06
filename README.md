@@ -3,7 +3,11 @@ Application and PowerShell plugin to query and set display settings (i.e. screen
 
 This also serves as an example on how command line applications and PowerShell plugins compete in terms of features and development effort.
 
-## Current feture set
+## Current feature set
+
+The current feature set is as follows:
+- get current and available resolutions
+- set current resolution
 
 ### Command line 
 
