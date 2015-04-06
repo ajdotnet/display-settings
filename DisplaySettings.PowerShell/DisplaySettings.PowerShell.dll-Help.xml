@@ -107,7 +107,7 @@
 					<command:parameterValue required="true">int32</command:parameterValue>
 				</command:parameter>
 				<command:parameter position="2" required="false" globbing="false" pipelineInput="false">
-					<maml:name>colorDeepth</maml:name>
+					<maml:name>colordepth</maml:name>
 					<command:parameterValue required="true">int32</command:parameterValue>
 				</command:parameter>
 				<command:parameter position="3" required="false" globbing="false" pipelineInput="false">
@@ -132,12 +132,12 @@
 				<command:parameterValue required="true">int32</command:parameterValue>
 			</command:parameter>
 			<command:parameter required="false" position="2" globbing="false" pipelineInput="false">
-				<maml:name>colorDeepth</maml:name>
+				<maml:name>colorDepth</maml:name>
 				<maml:description>
-					<maml:para>the color deepth (in bits per pixel) to be set.</maml:para>
+					<maml:para>the color depth (in bits per pixel) to be set.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true">int32</command:parameterValue>
-				<dev:defaultValue>The current color deepth.</dev:defaultValue>
+				<dev:defaultValue>The current color depth.</dev:defaultValue>
 				<dev:possibleValues>
 					<dev:possibleValue>
 						<dev:value>8</dev:value>

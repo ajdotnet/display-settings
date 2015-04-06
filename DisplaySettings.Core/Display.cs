@@ -2,7 +2,6 @@
 
 using AJ.Common;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace DisplaySettings.Core
 {
@@ -17,8 +16,8 @@ namespace DisplaySettings.Core
         public static IEnumerable<DisplayData> QueryAllDisplaySettings()
         {
             var dmCurrent = NativeMethods.QueryCurrentDisplaySettings();
-            var result = NativeMethods.QueryAllDisplaySettings().Select(dm => new DisplayData(dm, NativeMethods.AreEqual(dm, dmCurrent)));
-            return result;
+            foreach (var dm in NativeMethods.QueryAllDisplaySettings())
+                yield return new DisplayData(dm, NativeMethods.AreEqual(dm, dmCurrent));
         }
 
         public static int ChangeSettings(DisplayData data, out string err)

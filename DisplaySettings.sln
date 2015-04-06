@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplaySettings.Core", "Dis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplaySettings", "DisplaySettings\DisplaySettings.csproj", "{55B63ED5-EC47-47BF-89A6-46C2CEEFBE41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplaySettingsPS", "DisplaySettingsPS\DisplaySettingsPS.csproj", "{CF887A52-F218-4A52-8339-1BFB29B4CF6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplaySettings.PowerShell", "DisplaySettings.PowerShell\DisplaySettings.PowerShell.csproj", "{CF887A52-F218-4A52-8339-1BFB29B4CF6D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E113A36C-69EA-442A-9156-09F501FAFBE8}"
 	ProjectSection(SolutionItems) = preProject

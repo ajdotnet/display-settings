@@ -3,23 +3,21 @@
 using DisplaySettings.Core;
 using System.Management.Automation;
 
-namespace DisplaySettingsPS
+namespace DisplaySettings.PowerShell
 {
-    /// <summary>
-    /// </summary>
-    /// <remarks>
-    /// - parameter all: SwitchParameter as datatype
-    /// - output formatting
-    ///     - format datei wird bei "interactive" verwendet, nicht im script
-    ///     - "format-list * " tut im script auch nicht
-    /// </remarks>
     [Cmdlet(VerbsCommon.Get, "DisplaySettings")]
-    public class GetDisplaySettingsCommand : PSCmdlet
+    public class GetDisplaySettingsCommand : Cmdlet
     {
+        #region properties
+
         [Parameter(HelpMessage =
            "provide this parameter to show a complete list of available screen settings; " +
            "otherwise only the current screen setting is reported.")]
         public SwitchParameter All { get; set; }
+
+        #endregion
+
+        #region processing
 
         protected override void ProcessRecord()
         {
@@ -35,5 +33,7 @@ namespace DisplaySettingsPS
                 WriteObject(current);
             }
         }
+
+        #endregion
     }
 }

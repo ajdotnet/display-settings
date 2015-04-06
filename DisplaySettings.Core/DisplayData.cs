@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace DisplaySettings.Core
 {
-    [DebuggerDisplay("{Width} x {Height}, {ColorDeepth} bpp, {ScreenRefreshRate} Hz, {DeviceName}")]
+    [DebuggerDisplay("{Width} x {Height}, {ColorDepth} bpp, {ScreenRefreshRate} Hz, {DeviceName}")]
     public class DisplayData
     {
         NativeMethods.DEVMODE _Data;

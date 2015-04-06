@@ -2,7 +2,7 @@
 <Configuration>
 	<ViewDefinitions>
 		<View>
-			<Name>DisplaySettings</Name>
+			<Name>DisplaySettingsPS</Name>
 			<ViewSelectedBy>
 				<TypeName>DisplaySettings.Core.DisplayData</TypeName>
 			</ViewSelectedBy>
@@ -14,7 +14,7 @@
 						<Alignment>right</Alignment>
 					</TableColumnHeader>
 					<TableColumnHeader>
-						<Label>Color Deepth</Label>
+						<Label>Color Depth</Label>
 						<Width>12</Width>
 						<Alignment>right</Alignment>
 					</TableColumnHeader>
@@ -40,7 +40,7 @@
 								</ScriptBlock>
 							</TableColumnItem>
 							<TableColumnItem>
-								<PropertyName>ColorDeepth</PropertyName>
+								<PropertyName>ColorDepth</PropertyName>
 							</TableColumnItem>
 							<TableColumnItem>
 								<PropertyName>ScreenRefreshRate</PropertyName>
