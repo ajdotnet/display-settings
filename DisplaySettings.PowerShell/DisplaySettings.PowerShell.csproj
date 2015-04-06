@@ -70,10 +70,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="load-module.ps1">
+    <Content Include="DisplaySettings.Format.ps1xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DisplaySettings.Format.ps1xml">
+    <Content Include="load-module.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -107,9 +107,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DisplaySettings.psd1">
+    <None Include="DisplaySettings.psd1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
