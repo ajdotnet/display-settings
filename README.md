@@ -40,14 +40,14 @@ snapin to module (see [Modules and Snap-ins](https://msdn.microsoft.com/en-us/li
 
 Details on how to install modules can be found [here](https://msdn.microsoft.com/en-us/library/dd878350(v=vs.85).aspx).
 Essentially:
-- You want to play with the code, use '.\load-module.ps1' in the output directory to load the module.
-- You want to use the module "productively", you copy everything to '%userprofile%\Documents\WindowsPowershell\Modules\DisplaySettings\'.
-Load the module using 'Import-Module DisplaySettings'.
+- You want to play with the code, use `.\load-module.ps1` in the output directory to load the module.
+- You want to use the module "productively", you copy everything to `%userprofile%\Documents\WindowsPowershell\Modules\DisplaySettings\`.
+Load the module using `Import-Module DisplaySettings`.
 
 
 ## background
 
 For background see https://ajdotnet.wordpress.com/2008/01/19/command-line-tool-vs-powershell-cmdlet/
 
-Note: This solution depends on https://github.com/ajdotnet/AJ.Common and https://github.com/ajdotnet/AJ.Console.
+Note: This solution depends on [AJ.Common](https://github.com/ajdotnet/AJ.Common) and [AJ.Console](https://github.com/ajdotnet/AJ.Console).
 
