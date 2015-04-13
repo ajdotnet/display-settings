@@ -5,18 +5,19 @@ using System.Diagnostics;
 
 namespace DisplaySettings.Core
 {
-    [DebuggerDisplay("{Width} x {Height}, {ColorDepth} bpp, {ScreenRefreshRate} Hz, {DeviceName}")]
+    [DebuggerDisplay("{Width} x {Height}, {ColorDepth} bpp, {ScreenRefreshRate} Hz")]
     public class DisplayData
     {
         NativeMethods.DEVMODE _Data;
 
         internal NativeMethods.DEVMODE Data { get { return _Data; } }
-        
-        public int Width { get { return _Data.dmPelsWidth; } set { _Data.dmPelsWidth = value; } }
-        public int Height { get { return _Data.dmPelsHeight; } set { _Data.dmPelsHeight = value; } }
-        public int ColorDepth { get { return _Data.dmBitsPerPel; } set { _Data.dmBitsPerPel = (short)value; } }
-        public int ScreenRefreshRate { get { return _Data.dmDisplayFrequency; } set { _Data.dmDisplayFrequency = value; } }
-        public string DeviceName { get { return _Data.dmDeviceName; } }
+
+        public int Width { get { return (int)_Data.dmPelsWidth; } set { _Data.dmPelsWidth = (uint)value; } }
+        public int Height { get { return (int)_Data.dmPelsHeight; } set { _Data.dmPelsHeight = (uint)value; } }
+        public int ColorDepth { get { return (int)_Data.dmBitsPerPel; } set { _Data.dmBitsPerPel = (uint)value; } }
+        public int ScreenRefreshRate { get { return (int)_Data.dmDisplayFrequency; } set { _Data.dmDisplayFrequency = (uint)value; } }
+        public int PositionX { get { return _Data.UnionA.dmPositionX; } set { _Data.UnionA.dmPositionX = value; } }
+        public int PositionY { get { return _Data.UnionA.dmPositionY; } set { _Data.UnionA.dmPositionY = value; } }
 
         public bool IsCurrent { get; private set; }
 

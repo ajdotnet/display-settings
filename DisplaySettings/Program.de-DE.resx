@@ -104,18 +104,18 @@
 	</data>
 	<data name="Syntax">
 		<value>SYNTAX:
-    DisplaySettings.exe xres yres [color depth] [frequency]
-    DisplaySettings.exe /query|/queryAll [/device device]
+    DisplaySettings.exe xres yres [Farbtiefe] [Frequenz]
+    DisplaySettings.exe /query|/queryAll [/device Gerät]
     DisplaySettings.exe /queryDevices
 		</value>
 	</data>
 	<data name="Help">
 		<value>
-    xres                horizontal resolution
-    yres                vertical resolution
-    color depth         colors in bits (8, 16, 32)
-    frequency           screen refresh rate
-    device              device number, as reported by /queryDevices
+    xres                Horizontale Auflösung
+    yres                Vertikale Auflösung
+    Farbtiefe           Farben in Bit (8, 16, 32)
+    Frequenz            Bildwiederholrate
+    Gerät               Gerätenummer, wie sie von /queryDevices gemeldet wird.
 </value>
 	</data>
 </root>

@@ -7,24 +7,24 @@ namespace DisplaySettings.Core
 {
     public static class Display
     {
-        public static DisplayData QueryCurrentDisplaySettings()
+        public static DisplayData QueryCurrentDisplaySettings(string deviceName = null)
         {
-            var dmCurrent = NativeMethods.QueryCurrentDisplaySettings();
+            var dmCurrent = NativeMethods.QueryCurrentDisplaySettings(deviceName);
             return new DisplayData(dmCurrent, true);
         }
 
-        public static IEnumerable<DisplayData> QueryAllDisplaySettings()
+        public static IEnumerable<DisplayData> QueryAllDisplaySettings(string deviceName = null)
         {
-            var dmCurrent = NativeMethods.QueryCurrentDisplaySettings();
-            foreach (var dm in NativeMethods.QueryAllDisplaySettings())
+            var dmCurrent = NativeMethods.QueryCurrentDisplaySettings(deviceName);
+            foreach (var dm in NativeMethods.QueryAllDisplaySettings(deviceName))
                 yield return new DisplayData(dm, NativeMethods.AreEqual(dm, dmCurrent));
         }
 
-        public static int ChangeSettings(DisplayData data, out string err)
+        public static int ChangeSettings(DisplayData data, out string errorMessage, string deviceName = null)
         {
             Guard.AssertNotNull(data, "data");
 
-            return NativeMethods.ChangeSettings(data.Data, out err);
+            return NativeMethods.ChangeSettings(data.Data, out errorMessage, deviceName);
         }
     }
 }

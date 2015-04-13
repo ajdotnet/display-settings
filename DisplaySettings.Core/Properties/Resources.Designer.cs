@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DisplaySettings.Properties {
+namespace DisplaySettings.Core.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace DisplaySettings.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DisplaySettings.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DisplaySettings.Core.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,74 @@ namespace DisplaySettings.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Argument {0} is no valid number..
+        ///   Looks up a localized string similar to The settings change was unsuccessful because system is DualView capable..
         /// </summary>
-        internal static string Err_ArgumentNoNumber {
+        internal static string DISP_CHANGE_BADDUALVIEW {
             get {
-                return ResourceManager.GetString("Err_ArgumentNoNumber", resourceCulture);
+                return ResourceManager.GetString("DISP_CHANGE_BADDUALVIEW", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Device #{0} not found..
+        ///   Looks up a localized string similar to An invalid set of flags was passed in..
         /// </summary>
-        internal static string Err_DeviceNotFound {
+        internal static string DISP_CHANGE_BADFLAGS {
             get {
-                return ResourceManager.GetString("Err_DeviceNotFound", resourceCulture);
+                return ResourceManager.GetString("DISP_CHANGE_BADFLAGS", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No arguments or switches provided..
+        ///   Looks up a localized string similar to An invalid parameter was passed in. This can include an invalid flag or combination of flags..
         /// </summary>
-        internal static string Err_NoArguments {
+        internal static string DISP_CHANGE_BADPARAM {
             get {
-                return ResourceManager.GetString("Err_NoArguments", resourceCulture);
+                return ResourceManager.GetString("DISP_CHANGE_BADPARAM", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No matching display setting found..
+        ///   Looks up a localized string similar to ChangeDisplaySettings API failed..
         /// </summary>
-        internal static string Err_NoMatchingDisplaySettings {
+        internal static string DISP_CHANGE_FAILED {
             get {
-                return ResourceManager.GetString("Err_NoMatchingDisplaySettings", resourceCulture);
+                return ResourceManager.GetString("DISP_CHANGE_FAILED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error setting values: {0}.
+        ///   Looks up a localized string similar to Unable to write settings to the registry..
         /// </summary>
-        internal static string Err_SettingValues {
+        internal static string DISP_CHANGE_NOTUPDATED {
             get {
-                return ResourceManager.GetString("Err_SettingValues", resourceCulture);
+                return ResourceManager.GetString("DISP_CHANGE_NOTUPDATED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Setting values returned successfully..
+        ///   Looks up a localized string similar to Unknown return value from ChangeDisplaySettings API..
         /// </summary>
-        internal static string OK_SettingValues {
+        internal static string DISP_CHANGE_OTHER {
             get {
-                return ResourceManager.GetString("OK_SettingValues", resourceCulture);
+                return ResourceManager.GetString("DISP_CHANGE_OTHER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please restart your system..
+        /// </summary>
+        internal static string DISP_CHANGE_RESTART {
+            get {
+                return ResourceManager.GetString("DISP_CHANGE_RESTART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings changed successfully..
+        /// </summary>
+        internal static string DISP_CHANGE_SUCCESSFUL {
+            get {
+                return ResourceManager.GetString("DISP_CHANGE_SUCCESSFUL", resourceCulture);
             }
         }
     }

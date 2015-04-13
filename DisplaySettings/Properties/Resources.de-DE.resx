@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Err_ArgumentNoNumber" xml:space="preserve">
-    <value>Argument {0} is no valid number.</value>
+    <value>Argument {0} ist keine gültige Zahl.</value>
   </data>
   <data name="Err_NoArguments" xml:space="preserve">
-    <value>No arguments or switches provided.</value>
+    <value>Keine Argumente oder Schalter übergeben.</value>
   </data>
   <data name="Err_NoMatchingDisplaySettings" xml:space="preserve">
-    <value>No matching display setting found.</value>
+    <value>Keine passenden Bildschirmeinstellungen gefunden.</value>
   </data>
   <data name="Err_SettingValues" xml:space="preserve">
-    <value>Error setting values: {0}</value>
+    <value>Fehler beim Setzen der Werte: {0}</value>
   </data>
     <data name="OK_SettingValues" xml:space="preserve">
-    <value>Setting values returned successfully.</value>
+    <value>Die Werte wurden erfolgreich gesetzt.</value>
   </data>
     <data name="Err_DeviceNotFound" xml:space="preserve">
-    <value>Device #{0} not found.</value>
+    <value>Gerät #{0} nicht gefunden.</value>
   </data>
 </root>
