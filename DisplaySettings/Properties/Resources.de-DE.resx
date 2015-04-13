@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+    <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,80 +59,82 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+        <xsd:element name="root" msdata:IsDataSet="true">
             <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="metadata">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" use="required" type="xsd:string" />
+                            <xsd:attribute name="type" type="xsd:string" />
+                            <xsd:attribute name="mimetype" type="xsd:string" />
+                            <xsd:attribute ref="xml:space" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="assembly">
+                        <xsd:complexType>
+                            <xsd:attribute name="alias" type="xsd:string" />
+                            <xsd:attribute name="name" type="xsd:string" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="data">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+                            <xsd:attribute ref="xml:space" />
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="resheader">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" />
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
             </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="Err_ArgumentNoNumber" xml:space="preserve">
-    <value>Argument {0} ist keine gültige Zahl.</value>
-  </data>
-  <data name="Err_NoArguments" xml:space="preserve">
-    <value>Keine Argumente oder Schalter übergeben.</value>
-  </data>
-  <data name="Err_NoMatchingDisplaySettings" xml:space="preserve">
-    <value>Keine passenden Bildschirmeinstellungen gefunden.</value>
-  </data>
-  <data name="Err_SettingValues" xml:space="preserve">
-    <value>Fehler beim Setzen der Werte: {0}</value>
-  </data>
-    <data name="OK_SettingValues" xml:space="preserve">
-    <value>Die Werte wurden erfolgreich gesetzt.</value>
-  </data>
-    <data name="Err_DeviceNotFound" xml:space="preserve">
-    <value>Gerät #{0} nicht gefunden.</value>
-  </data>
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="OK_SettingValues" xml:space="preserve"><value>Die Werte wurden erfolgreich gesetzt.</value></data>
+    <data name="Err_ArgumentNoNumber" xml:space="preserve"><value>Argument {0} ist keine gültige Zahl.</value></data>
+    <data name="Err_NoArguments" xml:space="preserve"><value>Keine Argumente oder Schalter übergeben.</value></data>
+    <data name="Err_NoMatchingDisplaySettings" xml:space="preserve"><value>Keine passenden Bildschirmeinstellungen gefunden.</value></data>
+    <data name="Err_SettingValues" xml:space="preserve"><value>Fehler beim Setzen der Werte: {0}</value></data>
+    <data name="Err_DeviceNotFound" xml:space="preserve"><value>Gerät #{0} nicht gefunden.</value></data>
+
+    <data name="Msg_Header_DisplaySettings" xml:space="preserve"><value>Bildschirmeinstellungen</value></data>
+    <data name="Msg_Resolution" xml:space="preserve"><value>Auflösung</value></data>
+    <data name="Msg_ColorDepth" xml:space="preserve"><value>Farbtiefe</value></data>
+    <data name="Msg_ColorDepthUnit" xml:space="preserve"><value>Bit/Pixel</value></data>
+    <data name="Msg_RefreshRate" xml:space="preserve"><value>Bildwiederholrate</value></data>
+    <data name="Msg_Position" xml:space="preserve"><value>Position</value></data>
+
+    <data name="Msg_Header_DisplayAdapters" xml:space="preserve"><value>Anzeigen</value></data>
+    <data name="Msg_Adapter" xml:space="preserve"><value>Grafikkarte</value></data>
+    <data name="Msg_Monitor" xml:space="preserve"><value>Bildschirm</value></data>
+
+    <data name="Msg_Current" xml:space="preserve"><value>(aktuell)</value></data>
+    <data name="Msg_Primary" xml:space="preserve"><value>(primär)</value></data>
 </root>

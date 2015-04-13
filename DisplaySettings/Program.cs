@@ -3,6 +3,7 @@
 using AJ.Common;
 using AJ.Console;
 using DisplaySettings.Core;
+using DisplaySettings.Properties;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -58,7 +59,7 @@ namespace DisplaySettings
                 for (int i = 0; i < values.Length; i++)
                 {
                     if (!int.TryParse(values[i], out _setValues[i]))
-                        ThrowInvalidArguments(string.Format(CultureInfo.CurrentCulture, Properties.Resources.Err_ArgumentNoNumber, i + 1));
+                        ThrowInvalidArguments(string.Format(CultureInfo.CurrentCulture, Resources.Err_ArgumentNoNumber, i + 1));
                 }
             }
         }
@@ -88,7 +89,7 @@ namespace DisplaySettings
                 case "/DEVICE":
                     EnsureLength(values, 1, 1, name);
                     if (!int.TryParse(values[0], out _deviceNumber))
-                        ThrowInvalidArguments(string.Format(CultureInfo.CurrentCulture, Properties.Resources.Err_ArgumentNoNumber, "for " + name));
+                        ThrowInvalidArguments(string.Format(CultureInfo.CurrentCulture, Resources.Err_ArgumentNoNumber, "for " + name));
                     break;
                 default:
                     // we don't like what we don't know
@@ -101,7 +102,7 @@ namespace DisplaySettings
         {
             base.ApplySwitches();
             if (_mode == Mode.None)
-                ThrowInvalidArguments(Properties.Resources.Err_NoArguments);
+                ThrowInvalidArguments(Resources.Err_NoArguments);
         }
 
         protected override void Process()
@@ -112,7 +113,7 @@ namespace DisplaySettings
                 DeviceData dd = GetDevice(_deviceNumber);
                 if (dd == null)
                 {
-                    throw new ConsoleException(string.Format(CultureInfo.CurrentCulture, Properties.Resources.Err_DeviceNotFound, _deviceNumber));
+                    throw new ConsoleException(string.Format(CultureInfo.CurrentCulture, Resources.Err_DeviceNotFound, _deviceNumber));
                 }
                 deviceName = dd.DeviceName;
             }
@@ -128,16 +129,16 @@ namespace DisplaySettings
                 var displaySettings = Display.QueryAllDisplaySettings(deviceName);
                 var found = displaySettings.Where(dd => DisplayData.AreEqual(dd, current)).FirstOrDefault();
                 if (found == null)
-                    ThrowInvalidArguments(Properties.Resources.Err_NoMatchingDisplaySettings);
+                    ThrowInvalidArguments(Resources.Err_NoMatchingDisplaySettings);
 
                 string err;
                 if (Display.ChangeSettings(found, out err, deviceName) != 0)
-                    throw new ConsoleException(string.Format(CultureInfo.CurrentCulture, Properties.Resources.Err_SettingValues, err));
+                    throw new ConsoleException(string.Format(CultureInfo.CurrentCulture, Resources.Err_SettingValues, err));
 
                 if (err != null)
-                    WriteLine(string.Format(CultureInfo.CurrentCulture, Properties.Resources.Err_SettingValues, err));
+                    WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.Err_SettingValues, err));
                 else
-                    WriteLine(Properties.Resources.OK_SettingValues);
+                    WriteLine(Resources.OK_SettingValues);
             }
 
             if (_mode.HasFlag(Mode.Query))
@@ -161,30 +162,35 @@ namespace DisplaySettings
 
         private void PrintDisplayData(DisplayData data)
         {
-            WriteLine("Display Settings:");
+            int width = Math.Max(Math.Max(Math.Max(Resources.Msg_Resolution.Length, Resources.Msg_ColorDepth.Length), Resources.Msg_RefreshRate.Length), Resources.Msg_Position.Length);
+            WriteLine(Resources.Msg_Header_DisplaySettings);
             WriteLine("");
-            WriteLine("    Resolution:   " + data.Width + " x " + data.Height);
-            WriteLine("    Color Deepth: " + data.ColorDepth + " bits per pixel");
-            WriteLine("    Refresh rate: " + data.ScreenRefreshRate + " Hertz");
-            WriteLine("    Position:     " + data.PositionX + " x " + data.PositionY);
+            WriteLine("    " + Resources.Msg_Resolution + ":   " + "".PadRight(width - Resources.Msg_Resolution.Length) + data.Width + " x " + data.Height);
+            WriteLine("    " + Resources.Msg_ColorDepth + ":   " + "".PadRight(width - Resources.Msg_ColorDepth.Length) + data.ColorDepth + " " + Resources.Msg_ColorDepthUnit);
+            WriteLine("    " + Resources.Msg_RefreshRate + ":   " + "".PadRight(width - Resources.Msg_RefreshRate.Length) + data.ScreenRefreshRate + " Hertz");
+            WriteLine("    " + Resources.Msg_Position + ":   " + "".PadRight(width - Resources.Msg_Position.Length) + data.PositionX + " x " + data.PositionY);
             WriteLine("");
         }
 
         private void PrintDisplaySetting(IEnumerable<DisplayData> list)
         {
-            WriteLine("Display Settings:");
+            int w1 = Math.Max(11, Resources.Msg_Resolution.Length);
+            int w2 = Math.Max(6, Resources.Msg_ColorDepth.Length);
+            int w3 = Math.Max(9, Resources.Msg_RefreshRate.Length);
+
+            WriteLine(Resources.Msg_Header_DisplaySettings + ":");
             WriteLine("");
-            WriteLine("       Resolution   Color Deepth    Refresh Rate");
-            WriteLine("    =============   ============    ============");
+            WriteLine("    " + Resources.Msg_Resolution.PadLeft(w1) + "   " + Resources.Msg_ColorDepth.PadLeft(w2) + "   " + Resources.Msg_RefreshRate.PadLeft(w3));
+            WriteLine("    " + "".PadRight(w1, '=') + "   " + "".PadRight(w2, '=') + "   " + "".PadRight(w3, '='));
             string line;
 
             foreach (DisplayData data in list)
             {
                 line = string.Format(CultureInfo.InvariantCulture,
-                    "     {0,4} x {1,4}        {2,2} bpp        {3,2} Hertz",
+                    "    " + "".PadRight(w1 - 11) + "{0,4} x {1,4}   " + "".PadRight(w2 - 6) + "{2,2} bpp   " + "".PadRight(w3 - 9) + "{3,3} Hertz",
                     data.Width, data.Height, data.ColorDepth, data.ScreenRefreshRate);
                 if (data.IsCurrent)
-                    WriteLine(ShowLevel.Important, line + " (current)");
+                    WriteLine(ShowLevel.Important, line + " " + Resources.Msg_Current);
                 else
                     WriteLine(line);
             }
@@ -197,9 +203,9 @@ namespace DisplaySettings
             var lengthAdapter = a.Where(dd => dd.IsAdapter).Select(dd => dd.DeviceString.Length).Max();
             var lengthMonitor = a.Where(dd => dd.IsMonitor).Select(dd => dd.DeviceString.Length).Max();
 
-            WriteLine("Display Adapters:");
+            WriteLine(Resources.Msg_Header_DisplayAdapters);
             WriteLine("");
-            WriteLine("    # " + "Adapter".PadRight(lengthAdapter) + "    Monitor");
+            WriteLine("    # " + Resources.Msg_Adapter.PadRight(lengthAdapter) + "    " + Resources.Msg_Monitor);
             WriteLine("    = " + "".PadRight(lengthAdapter, '=') + "    " + "".PadRight(lengthMonitor, '='));
 
             DeviceData adapter = null;
@@ -216,7 +222,7 @@ namespace DisplaySettings
                         adapter.DeviceString.PadRight(lengthAdapter) + " -> " +
                         data.DeviceString.PadRight(lengthMonitor);
                     if (adapter.IsPrimary)
-                        WriteLine(ShowLevel.Important, line + " (primary)");
+                        WriteLine(ShowLevel.Important, line + " " + Resources.Msg_Primary);
                     else
                         WriteLine(line);
                     ++number;

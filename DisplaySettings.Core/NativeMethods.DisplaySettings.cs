@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
+using DisplaySettings.Core.Properties;
 
 namespace DisplaySettings.Core
 {
@@ -73,14 +74,14 @@ namespace DisplaySettings.Core
 
             switch (iRet)
             {
-                case ChangeSettingsReturnValues.DISP_CHANGE_SUCCESSFUL: errorMessage = Properties.Resources.DISP_CHANGE_SUCCESSFUL; break;
-                case ChangeSettingsReturnValues.DISP_CHANGE_RESTART: errorMessage = Properties.Resources.DISP_CHANGE_RESTART; break;
-                case ChangeSettingsReturnValues.DISP_CHANGE_FAILED: errorMessage = Properties.Resources.DISP_CHANGE_FAILED; break;
-                case ChangeSettingsReturnValues.DISP_CHANGE_BADDUALVIEW: errorMessage = Properties.Resources.DISP_CHANGE_BADDUALVIEW; break;
-                case ChangeSettingsReturnValues.DISP_CHANGE_BADFLAGS: errorMessage = Properties.Resources.DISP_CHANGE_BADFLAGS; break;
-                case ChangeSettingsReturnValues.DISP_CHANGE_BADPARAM: errorMessage = Properties.Resources.DISP_CHANGE_BADPARAM; break;
-                case ChangeSettingsReturnValues.DISP_CHANGE_NOTUPDATED: errorMessage = Properties.Resources.DISP_CHANGE_NOTUPDATED; break;
-                default: errorMessage = Properties.Resources.DISP_CHANGE_OTHER; break;
+                case ChangeSettingsReturnValues.DISP_CHANGE_SUCCESSFUL: errorMessage = Resources.DISP_CHANGE_SUCCESSFUL; break;
+                case ChangeSettingsReturnValues.DISP_CHANGE_RESTART: errorMessage = Resources.DISP_CHANGE_RESTART; break;
+                case ChangeSettingsReturnValues.DISP_CHANGE_FAILED: errorMessage = Resources.DISP_CHANGE_FAILED; break;
+                case ChangeSettingsReturnValues.DISP_CHANGE_BADDUALVIEW: errorMessage = Resources.DISP_CHANGE_BADDUALVIEW; break;
+                case ChangeSettingsReturnValues.DISP_CHANGE_BADFLAGS: errorMessage = Resources.DISP_CHANGE_BADFLAGS; break;
+                case ChangeSettingsReturnValues.DISP_CHANGE_BADPARAM: errorMessage = Resources.DISP_CHANGE_BADPARAM; break;
+                case ChangeSettingsReturnValues.DISP_CHANGE_NOTUPDATED: errorMessage = Resources.DISP_CHANGE_NOTUPDATED; break;
+                default: errorMessage = Resources.DISP_CHANGE_OTHER; break;
             }
             return (int)iRet;
         }
