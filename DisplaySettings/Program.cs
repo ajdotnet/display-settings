@@ -107,68 +107,70 @@ namespace DisplaySettings
 
         protected override void Process()
         {
+            if (_deviceNumber < 0)
+                _deviceNumber = DisplayLogic.GetCurrentDeviceNumber();
+
             string deviceName = null;
+            DeviceScreen screen = null;
             if (_deviceNumber > 0)
             {
-                DeviceData dd = GetDevice(_deviceNumber);
-                if (dd == null)
+                screen = DisplayLogic.GetDeviceScreen(_deviceNumber);
+                if (screen == null)
                 {
                     throw new ConsoleException(string.Format(CultureInfo.CurrentCulture, Resources.Err_DeviceNotFound, _deviceNumber));
                 }
-                deviceName = dd.DeviceName;
+                deviceName = screen.Adapter.DeviceName;
             }
 
             if (_mode.HasFlag(Mode.Set))
             {
-                var current = Display.QueryCurrentDisplaySettings(deviceName);
+                var current = DisplayLogic.QueryCurrentDisplaySettings(deviceName);
                 current.Width = _setValues[0];
                 current.Height = _setValues[1];
                 current.ColorDepth = _setValues[2] < 0 ? current.ColorDepth : _setValues[2];
                 current.ScreenRefreshRate = _setValues[3] < 0 ? current.ScreenRefreshRate : _setValues[3];
 
-                var displaySettings = Display.QueryAllDisplaySettings(deviceName);
+                var displaySettings = DisplayLogic.QueryAllDisplaySettings(deviceName);
                 var found = displaySettings.Where(dd => DisplayData.AreEqual(dd, current)).FirstOrDefault();
                 if (found == null)
                     ThrowInvalidArguments(Resources.Err_NoMatchingDisplaySettings);
 
                 string err;
-                if (Display.ChangeSettings(found, out err, deviceName) != 0)
+                if (DisplayLogic.ChangeSettings(found, out err, deviceName) != 0)
                     throw new ConsoleException(string.Format(CultureInfo.CurrentCulture, Resources.Err_SettingValues, err));
-
-                if (err != null)
-                    WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.Err_SettingValues, err));
-                else
-                    WriteLine(Resources.OK_SettingValues);
+                WriteLine(string.Format(CultureInfo.CurrentCulture, Resources.OK_SettingValues, found.GetDisplayText(), screen.Adapter.DeviceString, screen.Monitor.DeviceString));
             }
 
             if (_mode.HasFlag(Mode.Query))
             {
-                var current = Display.QueryCurrentDisplaySettings(deviceName);
-                PrintDisplayData(current);
+                var currentSettings = DisplayLogic.QueryCurrentDisplaySettings(deviceName);
+                PrintDisplayData(currentSettings, screen);
             }
 
             if (_mode.HasFlag(Mode.QueryAll))
             {
-                var displaySettings = Display.QueryAllDisplaySettings(deviceName);
+                var displaySettings = DisplayLogic.QueryAllDisplaySettings(deviceName);
                 PrintDisplaySetting(displaySettings);
             }
 
             if (_mode.HasFlag(Mode.QueryDevices))
             {
-                var devices = Devices.QueryDevices();
+                var devices = DisplayLogic.QueryDeviceScreens();
                 PrintDevices(devices);
             }
         }
 
-        private void PrintDisplayData(DisplayData data)
+        private void PrintDisplayData(DisplayData data, DeviceScreen device)
         {
-            int width = Math.Max(Math.Max(Math.Max(Resources.Msg_Resolution.Length, Resources.Msg_ColorDepth.Length), Resources.Msg_RefreshRate.Length), Resources.Msg_Position.Length);
+            int width = Math.Max(Math.Max(Math.Max(Math.Max(Resources.Msg_Resolution.Length, Resources.Msg_ColorDepth.Length), Resources.Msg_RefreshRate.Length), Resources.Msg_Position.Length), Resources.Msg_Monitor.Length);
             WriteLine(Resources.Msg_Header_DisplaySettings);
             WriteLine("");
+            WriteLine("    " + Resources.Msg_Monitor + ":   " + "".PadRight(width - Resources.Msg_Monitor.Length) + "#" + device.Number + ": " + device.Monitor.DeviceString);
             WriteLine("    " + Resources.Msg_Resolution + ":   " + "".PadRight(width - Resources.Msg_Resolution.Length) + data.Width + " x " + data.Height);
             WriteLine("    " + Resources.Msg_ColorDepth + ":   " + "".PadRight(width - Resources.Msg_ColorDepth.Length) + data.ColorDepth + " " + Resources.Msg_ColorDepthUnit);
             WriteLine("    " + Resources.Msg_RefreshRate + ":   " + "".PadRight(width - Resources.Msg_RefreshRate.Length) + data.ScreenRefreshRate + " Hertz");
-            WriteLine("    " + Resources.Msg_Position + ":   " + "".PadRight(width - Resources.Msg_Position.Length) + data.PositionX + " x " + data.PositionY);
+            //WriteLine("    " + Resources.Msg_Position + ":   " + "".PadRight(width - Resources.Msg_Position.Length) + data.PositionX + " x " + data.PositionY);
+            // todo: via EnumDisplayMonitors 
             WriteLine("");
         }
 
@@ -197,61 +199,29 @@ namespace DisplaySettings
             WriteLine("");
         }
 
-        private void PrintDevices(IEnumerable<DeviceData> list)
+        private void PrintDevices(IEnumerable<DeviceScreen> list)
         {
             var a = list.ToArray();
-            var lengthAdapter = a.Where(dd => dd.IsAdapter).Select(dd => dd.DeviceString.Length).Max();
-            var lengthMonitor = a.Where(dd => dd.IsMonitor).Select(dd => dd.DeviceString.Length).Max();
+            var lengthAdapter = a.Select(dd => dd.Adapter.DeviceString.Length).Max();
+            var lengthMonitor = a.Select(dd => dd.Monitor.DeviceString.Length).Max();
 
             WriteLine(Resources.Msg_Header_DisplayAdapters);
             WriteLine("");
             WriteLine("    # " + Resources.Msg_Adapter.PadRight(lengthAdapter) + "    " + Resources.Msg_Monitor);
             WriteLine("    = " + "".PadRight(lengthAdapter, '=') + "    " + "".PadRight(lengthMonitor, '='));
 
-            DeviceData adapter = null;
-            int number = 1;
             foreach (var data in list)
             {
-                if (data.IsAdapter)
-                {
-                    adapter = data;
-                }
+                string line = "    " + data.Number + " " +
+                    data.Adapter.DeviceString.PadRight(lengthAdapter) + " -> " +
+                    data.Monitor.DeviceString.PadRight(lengthMonitor);
+                if (data.IsPrimary)
+                    WriteLine(ShowLevel.Important, line + " " + Resources.Msg_Primary);
                 else
-                {
-                    string line = "    " + number + " " +
-                        adapter.DeviceString.PadRight(lengthAdapter) + " -> " +
-                        data.DeviceString.PadRight(lengthMonitor);
-                    if (adapter.IsPrimary)
-                        WriteLine(ShowLevel.Important, line + " " + Resources.Msg_Primary);
-                    else
-                        WriteLine(line);
-                    ++number;
-                }
+                    WriteLine(line);
             }
             WriteLine("");
         }
 
-        static DeviceData GetDevice(int number)
-        {
-            var devices = Devices.QueryDevices();
-
-            DeviceData adapter = null;
-            int n = 0;
-            foreach (var data in devices)
-            {
-                if (data.IsAdapter)
-                {
-                    adapter = data;
-                }
-                else
-                {
-                    ++n;
-                    if (n == number)
-                        return adapter;
-                }
-            }
-
-            return null;
-        }
     }
 }

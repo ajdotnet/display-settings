@@ -43,5 +43,6 @@ namespace DisplaySettings.Core
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
             public string DeviceKey;
         }
+
     }
 }

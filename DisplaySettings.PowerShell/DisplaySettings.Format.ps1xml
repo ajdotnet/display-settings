@@ -1,57 +1,254 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configuration>
-	<ViewDefinitions>
-		<View>
-			<Name>DisplaySettings.PowerShell</Name>
-			<ViewSelectedBy>
-				<TypeName>DisplaySettings.Core.DisplayData</TypeName>
-			</ViewSelectedBy>
-			<TableControl>
-				<TableHeaders>
-					<TableColumnHeader>
-						<Label>Resolution</Label>
-						<Width>12</Width>
-						<Alignment>right</Alignment>
-					</TableColumnHeader>
-					<TableColumnHeader>
-						<Label>Color Depth</Label>
-						<Width>12</Width>
-						<Alignment>right</Alignment>
-					</TableColumnHeader>
-					<TableColumnHeader>
-						<Label>Refresh Rate</Label>
-						<Width>12</Width>
-						<Alignment>right</Alignment>
-					</TableColumnHeader>
-					<TableColumnHeader>
-						<Label> </Label>
-						<Width>1</Width>
-					</TableColumnHeader>
-				</TableHeaders>
-				<TableRowEntries>
-					<TableRowEntry>
-						<TableColumnItems>
-							<TableColumnItem>
-								<ScriptBlock>
-									if ($_.Height -lt 1000)
-										{ $_.Width.ToString() + " x  " +  $_.Height.ToString() }
-									else
-										{ $_.Width.ToString() + " x " +  $_.Height.ToString() }
-								</ScriptBlock>
-							</TableColumnItem>
-							<TableColumnItem>
-								<PropertyName>ColorDepth</PropertyName>
-							</TableColumnItem>
-							<TableColumnItem>
-								<PropertyName>ScreenRefreshRate</PropertyName>
-							</TableColumnItem>
-							<TableColumnItem>
-								<ScriptBlock>if ($_.IsCurrent) {"*"}</ScriptBlock>
-							</TableColumnItem>
-						</TableColumnItems>
-					</TableRowEntry>
-				</TableRowEntries>
-			</TableControl>
-		</View>
-	</ViewDefinitions>
+    <ViewDefinitions>
+        <!-- SingleDisplayOutput: list, wide -->
+        <View>
+            <Name>SingleDisplayOutput_List</Name>
+            <ViewSelectedBy>
+                <TypeName>DisplaySettings.PowerShell.SingleDisplayOutput</TypeName>
+            </ViewSelectedBy>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
+                                <PropertyName>Number</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <Label>Adapter String</Label>
+                                <PropertyName>AdapterString</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <Label>Monitor String</Label>
+                                <PropertyName>MonitorString</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>Width</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>Height</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <Label>Color Depth</Label>
+                                <PropertyName>ColorDepth</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <Label>Screen Refresh Rate</Label>
+                                <PropertyName>ScreenRefreshRate</PropertyName>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
+        </View>
+        <View>
+            <Name>SingleDisplayOutput_Wide</Name>
+            <ViewSelectedBy>
+                <TypeName>DisplaySettings.PowerShell.SingleDisplayOutput</TypeName>
+            </ViewSelectedBy>
+            <WideControl>
+                <WideEntries>
+                    <WideEntry>
+                        <WideItem>
+                            <ScriptBlock>$_.GetDisplayText()</ScriptBlock>
+                        </WideItem>
+                    </WideEntry>
+                </WideEntries>
+            </WideControl>
+        </View>
+
+        <!-- ListDisplayOutput: table, list, wide -->
+        <View>
+            <Name>ListDisplayOutput_Table</Name>
+            <ViewSelectedBy>
+                <TypeName>DisplaySettings.PowerShell.ListDisplayOutput</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader>
+                        <Label>Width</Label>
+                        <Width>6</Width>
+                        <Alignment>right</Alignment>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>Height</Label>
+                        <Width>6</Width>
+                        <Alignment>right</Alignment>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>Color Depth</Label>
+                        <Width>12</Width>
+                        <Alignment>right</Alignment>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>Screen Refresh Rate</Label>
+                        <Width>19</Width>
+                        <Alignment>right</Alignment>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>Is Current</Label>
+                        <Width>10</Width>
+                    </TableColumnHeader>
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Width</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>Height</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>ColorDepth</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>ScreenRefreshRate</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <ScriptBlock>if ($_.IsCurrent) {"*"}</ScriptBlock>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
+            <Name>ListDisplayOutput_List</Name>
+            <ViewSelectedBy>
+                <TypeName>DisplaySettings.PowerShell.ListDisplayOutput</TypeName>
+            </ViewSelectedBy>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
+                                <PropertyName>Width</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>Height</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <Label>Color Depth</Label>
+                                <PropertyName>ColorDepth</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <Label>Screen Refresh Rate</Label>
+                                <PropertyName>ScreenRefreshRate</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <Label>Is Current</Label>
+                                <PropertyName>IsCurrent</PropertyName>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
+        </View>
+        <View>
+            <Name>ListDisplayOutput_Wide</Name>
+            <ViewSelectedBy>
+                <TypeName>DisplaySettings.PowerShell.ListDisplayOutput</TypeName>
+            </ViewSelectedBy>
+            <WideControl>
+                <WideEntries>
+                    <WideEntry>
+                        <WideItem>
+                            <ScriptBlock>$_.GetDisplayText()</ScriptBlock>
+                        </WideItem>
+                    </WideEntry>
+                </WideEntries>
+            </WideControl>
+        </View>
+
+        <!-- ScreenOutput: table, list, wide -->
+        <View>
+            <Name>ScreenOutput_Table</Name>
+            <ViewSelectedBy>
+                <TypeName>DisplaySettings.PowerShell.ScreenOutput</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader>
+                        <Label>Number</Label>
+                        <Width>6</Width>
+                        <Alignment>right</Alignment>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>Adapter String</Label>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>Monitor String</Label>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Label>Is Primary</Label>
+                        <Width>10</Width>
+                        <Alignment>right</Alignment>
+                    </TableColumnHeader>
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Number</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>AdapterString</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>MonitorString</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <ScriptBlock>if ($_.IsPrimary) {"*"}</ScriptBlock>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
+            <Name>ScreenOutput_List</Name>
+            <ViewSelectedBy>
+                <TypeName>DisplaySettings.PowerShell.ScreenOutput</TypeName>
+            </ViewSelectedBy>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
+                                <PropertyName>Number</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <Label>Adapter String</Label>
+                                <PropertyName>AdapterString</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <Label>Monitor String</Label>
+                                <PropertyName>MonitorString</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <Label>Is Primary</Label>
+                                <PropertyName>IsPrimary</PropertyName>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
+        </View>
+        <View>
+            <Name>ScreenOutput_Wide</Name>
+            <ViewSelectedBy>
+                <TypeName>DisplaySettings.PowerShell.ScreenOutput</TypeName>
+            </ViewSelectedBy>
+            <WideControl>
+                <WideEntries>
+                    <WideEntry>
+                        <WideItem>
+                            <ScriptBlock>$_.GetDisplayText()</ScriptBlock>
+                        </WideItem>
+                    </WideEntry>
+                </WideEntries>
+            </WideControl>
+        </View>
+    </ViewDefinitions>
 </Configuration>

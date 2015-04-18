@@ -47,10 +47,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Devices.cs" />
+    <Compile Include="DeviceScreen.cs" />
     <Compile Include="DeviceData.cs" />
     <Compile Include="DisplayData.cs" />
-    <Compile Include="Display.cs" />
+    <Compile Include="DisplayLogic.cs" />
+    <Compile Include="NativeMethods.RECT.cs" />
+    <Compile Include="NativeMethods.Pinvoke.cs" />
     <Compile Include="NativeMethods.DisplaySettings.cs" />
     <Compile Include="NativeMethods.DISPLAY_DEVICE.cs" />
     <Compile Include="NativeMethods.DEVMODE.cs" />

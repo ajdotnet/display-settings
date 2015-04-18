@@ -13,17 +13,17 @@ namespace DisplaySettings.Tests
         [TestMethod]
         public void Test_QueryAllDevices()
         {
-            var devices = Devices.QueryDevices().ToArray();
+            var devices = DisplayLogic.QueryDevices().ToArray();
             Assert.IsTrue(devices.Length > 0);
         }
 
         [TestMethod]
         public void Test_QueryDeviceDisplaySettings()
         {
-            var devices = Devices.QueryDevices().ToArray();
+            var devices = DisplayLogic.QueryDevices().ToArray();
             foreach (var device in devices)
             {
-                var modes = Display.QueryAllDisplaySettings(device.DeviceName).ToArray();
+                var modes = DisplayLogic.QueryAllDisplaySettings(device.DeviceName).ToArray();
                 Assert.IsTrue(modes.Length > 0, device.DeviceName);
             }
         }

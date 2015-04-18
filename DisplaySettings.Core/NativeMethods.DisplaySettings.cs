@@ -1,51 +1,15 @@
 // Source: https://github.com/ajdotnet/display-settings
 
+using DisplaySettings.Core.Properties;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
-using DisplaySettings.Core.Properties;
 
 namespace DisplaySettings.Core
 {
     static partial class NativeMethods
     {
-        public enum ChangeSettingsReturnValues : long
-        {
-            DISP_CHANGE_SUCCESSFUL = 0,
-            DISP_CHANGE_RESTART = 1,
-            DISP_CHANGE_FAILED = -1,
-            DISP_CHANGE_BADMODE = -2,
-            DISP_CHANGE_NOTUPDATED = -3,
-            DISP_CHANGE_BADFLAGS = -4,
-            DISP_CHANGE_BADPARAM = -5,
-            DISP_CHANGE_BADDUALVIEW = -6
-        }
-
-        [Flags]
-        public enum ChangeDisplayFlags : uint
-        {
-            CDS_DYNAMICALLY = 0,
-            CDS_UPDATEREGISTRY = 0x00000001,
-            CDS_TEST = 0x00000002,
-            CDS_FULLSCREEN = 0x00000004,
-            CDS_GLOBAL = 0x00000008,
-            CDS_SET_PRIMARY = 0x00000010,
-            CDS_VIDEOPARAMETERS = 0x00000020,
-            CDS_RESET = 0x40000000,
-            CDS_NORESET = 0x10000000
-        }
-
-        [SuppressMessage("Microsoft.Globalization", "CA2101:SpecifyMarshalingForPInvokeStringArguments", MessageId = "0")]
-        [DllImport("user32.dll", CharSet = CharSet.Ansi)]
-        public static extern int EnumDisplaySettings(string deviceName, int modeNum, ref DEVMODE devMode);
-
-        [DllImport("user32.dll")]
-        public static extern int ChangeDisplaySettings(ref DEVMODE devMode, uint flags);
-
-        public const int ENUM_CURRENT_SETTINGS = -1;
-
-        public static DEVMODE QueryCurrentDisplaySettings(string deviceName = null)
+        public static DEVMODE QueryCurrentDisplaySettings(string deviceName)
         {
             DEVMODE dm = new DEVMODE();
             dm.dmSize = (ushort)Marshal.SizeOf(dm);
@@ -53,7 +17,7 @@ namespace DisplaySettings.Core
             return dm;
         }
 
-        public static IEnumerable<DEVMODE> QueryAllDisplaySettings(string deviceName = null)
+        public static IEnumerable<DEVMODE> QueryAllDisplaySettings(string deviceName)
         {
             DEVMODE dm = new DEVMODE();
             dm.dmSize = (ushort)Marshal.SizeOf(dm);
@@ -63,14 +27,13 @@ namespace DisplaySettings.Core
             }
         }
 
-        public static int ChangeSettings(DEVMODE devmode, out string errorMessage, string deviceName = null)
+        public static int ChangeSettings(DEVMODE devmode, out string errorMessage, string deviceName)
         {
             errorMessage = "";
 
-            devmode.dmDeviceName = deviceName;
-            devmode.dmFields &= ~(DmFields.DM_DISPLAYFIXEDOUTPUT);
+            devmode.dmFields = DmFields.DM_PELSHEIGHT | DmFields.DM_PELSWIDTH | DmFields.DM_BITSPERPEL | DmFields.DM_DISPLAYFREQUENCY;
             ChangeDisplayFlags flags = ChangeDisplayFlags.CDS_UPDATEREGISTRY;
-            ChangeSettingsReturnValues iRet = (ChangeSettingsReturnValues)ChangeDisplaySettings(ref devmode, (uint)flags);
+            ChangeSettingsReturnValues iRet = (ChangeSettingsReturnValues)ChangeDisplaySettingsEx(deviceName, ref devmode, IntPtr.Zero, (uint)flags, IntPtr.Zero);
 
             switch (iRet)
             {
@@ -96,5 +59,31 @@ namespace DisplaySettings.Core
                 return true;
             return false;
         }
+
+        public static bool Contains(this DEVMODE x, RECT rect)
+        {
+            RECT screenBounds = new RECT
+            {
+                Left = x.UnionA.dmPositionX,
+                Top = x.UnionA.dmPositionY,
+                Right = x.UnionA.dmPositionX + (int)x.dmPelsWidth,
+                Bottom = x.UnionA.dmPositionY + (int)x.dmPelsHeight
+            };
+            return screenBounds.ContainsTopLeftCorner(rect);
+        }
+
+        public static bool ContainsTopLeftCorner(this RECT rect, RECT test)
+        {
+            return
+                (rect.Left <= test.Left) && (test.Left <= rect.Right) &&
+                (rect.Top <= test.Top) && (test.Top <= rect.Bottom);
+        }
+
+        //public static bool IntersectsWith(this RECT rect, RECT test)
+        //{
+        //    return
+        //        (rect.Left < test.Right) && (test.Left < rect.Right) &&
+        //        (rect.Top < test.Bottom) && (test.Top < rect.Bottom);
+        //}
     }
 }

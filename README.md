@@ -11,30 +11,62 @@ The current feature set is as follows:
 
 ### Command line 
 
-The command line help should be self-explanatory:
+The command line help should be rather self-explanatory:
 
 ```
+> DisplaySettings.exe /?
 Display Settings - (c) by Alexander Jung - https://github.com/ajdotnet/display-settings
 
 SYNTAX:
     DisplaySettings.exe xres yres [color depth] [frequency]
-    DisplaySettings.exe /query|/queryall
+    DisplaySettings.exe /query|/queryAll [/device device]
+    DisplaySettings.exe /queryDevices
 
-Systemparameter:
+System parameter:
 
-    @Parameterdatei     Arguments aus einer Datei einlesen
-    !Logdatei           In eine Logdatei schreiben
-    /?|/h[elp]          Hilfe anzeigen
-    /v[erbose]          Ausführliche Ausgabe
-    /q[uiet]            Keine Ausgabe
-    /nologo             Kein Logo ausgeben
+    @parameterfile      read arguments from file
+    !logfile            write output also to log file
+    /?|/h[help]         show help
+    /v[erbose]          show verbose output
+    /q[uiet]            show no output
+    /nologo             show no logo
 
 
     xres                horizontal resolution
     yres                vertical resolution
     color depth         colors in bits (8, 16, 32)
     frequency           screen refresh rate
+    device              device number, as reported by /queryDevices
 ```
+
+The `queryDevices` switch comes into play on multi-monitor configurations:
+
+```
+> DisplaySettings.exe /querydevices
+Display Settings - (c) by Alexander Jung - https://github.com/ajdotnet/display-settings
+
+Display Adapters
+
+    # Adapter                      Monitor
+    = =========================    ===================================
+    1 Intel(R) HD Graphics 4000 -> ThinkPad MaxBright Display 1600x900
+    2 Intel(R) HD Graphics 4000 -> Generic PnP Monitor                 (primary)
+```
+
+The device number then works on the `query` switch:
+
+```
+> DisplaySettings.exe /query /device 1
+Display Settings - (c) by Alexander Jung - https://github.com/ajdotnet/display-settings
+
+Display Settings
+
+	Monitor:        #1: ThinkPad MaxBright Display 1600x900
+    Resolution:     1600 x 900
+    Color Depth:    32 bits per pixel
+    Refresh Rate:   60 Hertz
+```
+
 
 ### PowerShell
 

@@ -2,6 +2,7 @@
 
 using AJ.Common;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DisplaySettings.Core
 {
@@ -16,14 +17,13 @@ namespace DisplaySettings.Core
         public int Height { get { return (int)_Data.dmPelsHeight; } set { _Data.dmPelsHeight = (uint)value; } }
         public int ColorDepth { get { return (int)_Data.dmBitsPerPel; } set { _Data.dmBitsPerPel = (uint)value; } }
         public int ScreenRefreshRate { get { return (int)_Data.dmDisplayFrequency; } set { _Data.dmDisplayFrequency = (uint)value; } }
-        public int PositionX { get { return _Data.UnionA.dmPositionX; } set { _Data.UnionA.dmPositionX = value; } }
-        public int PositionY { get { return _Data.UnionA.dmPositionY; } set { _Data.UnionA.dmPositionY = value; } }
-
         public bool IsCurrent { get; private set; }
 
-        public string DisplayText
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "don't want this to show up in powershell!")]
+        public string GetDisplayText()
         {
-            get { return this.Width + " x " + this.Height + ", " + this.ColorDepth + " bpp, " + this.ScreenRefreshRate + " Hertz"; }
+            return this.Width + " x " + this.Height + ", " + this.ColorDepth + " bpp, " + this.ScreenRefreshRate + " Hertz";
         }
 
         internal DisplayData(NativeMethods.DEVMODE data, bool isCurrent)

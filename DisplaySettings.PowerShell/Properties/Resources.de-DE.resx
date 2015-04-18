@@ -123,18 +123,6 @@
     <data name="Err_NoMatchingDisplaySettings" xml:space="preserve"><value>Keine passenden Bildschirmeinstellungen gefunden.</value></data>
     <data name="Err_SettingValues" xml:space="preserve"><value>Fehler beim Setzen der Werte: {0}</value></data>
     <data name="Err_DeviceNotFound" xml:space="preserve"><value>Gerät #{0} nicht gefunden.</value></data>
-
-    <data name="Msg_Header_DisplaySettings" xml:space="preserve"><value>Bildschirmeinstellungen</value></data>
-    <data name="Msg_Resolution" xml:space="preserve"><value>Auflösung</value></data>
-    <data name="Msg_ColorDepth" xml:space="preserve"><value>Farbtiefe</value></data>
-    <data name="Msg_ColorDepthUnit" xml:space="preserve"><value>Bit/Pixel</value></data>
-    <data name="Msg_RefreshRate" xml:space="preserve"><value>Bildwiederholrate</value></data>
-    <data name="Msg_Position" xml:space="preserve"><value>Position</value></data>
-
-    <data name="Msg_Header_DisplayAdapters" xml:space="preserve"><value>Anzeigen</value></data>
-    <data name="Msg_Adapter" xml:space="preserve"><value>Grafikkarte</value></data>
-    <data name="Msg_Monitor" xml:space="preserve"><value>Bildschirm</value></data>
-
-    <data name="Msg_Current" xml:space="preserve"><value>(aktuell)</value></data>
-    <data name="Msg_Primary" xml:space="preserve"><value>(primär)</value></data>
+    <data name="Msg_Confirm" xml:space="preserve"><value>Einstellungen für {1}/{2} auf {0} setzen?</value>  </data>
+    <data name="Msg_WhatIf" xml:space="preserve"><value>Einstellungen für {1}/{2} auf {0} setzen.</value>  </data>
 </root>

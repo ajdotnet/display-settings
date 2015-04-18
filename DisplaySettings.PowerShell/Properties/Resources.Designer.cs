@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DisplaySettings.Properties {
+namespace DisplaySettings.PowerShell.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace DisplaySettings.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DisplaySettings.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DisplaySettings.PowerShell.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -106,101 +106,20 @@ namespace DisplaySettings.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adapter.
+        ///   Looks up a localized string similar to Set display settings to {0} for {1}/{2}?.
         /// </summary>
-        internal static string Msg_Adapter {
+        internal static string Msg_Confirm {
             get {
-                return ResourceManager.GetString("Msg_Adapter", resourceCulture);
+                return ResourceManager.GetString("Msg_Confirm", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Color Depth.
+        ///   Looks up a localized string similar to Set display settings to {0} for {1}/{2}..
         /// </summary>
-        internal static string Msg_ColorDepth {
+        internal static string Msg_WhatIf {
             get {
-                return ResourceManager.GetString("Msg_ColorDepth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to bits per pixel.
-        /// </summary>
-        internal static string Msg_ColorDepthUnit {
-            get {
-                return ResourceManager.GetString("Msg_ColorDepthUnit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to (current).
-        /// </summary>
-        internal static string Msg_Current {
-            get {
-                return ResourceManager.GetString("Msg_Current", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Display Adapters.
-        /// </summary>
-        internal static string Msg_Header_DisplayAdapters {
-            get {
-                return ResourceManager.GetString("Msg_Header_DisplayAdapters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Display Settings.
-        /// </summary>
-        internal static string Msg_Header_DisplaySettings {
-            get {
-                return ResourceManager.GetString("Msg_Header_DisplaySettings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Monitor.
-        /// </summary>
-        internal static string Msg_Monitor {
-            get {
-                return ResourceManager.GetString("Msg_Monitor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Position.
-        /// </summary>
-        internal static string Msg_Position {
-            get {
-                return ResourceManager.GetString("Msg_Position", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to (primary).
-        /// </summary>
-        internal static string Msg_Primary {
-            get {
-                return ResourceManager.GetString("Msg_Primary", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Refresh Rate.
-        /// </summary>
-        internal static string Msg_RefreshRate {
-            get {
-                return ResourceManager.GetString("Msg_RefreshRate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Resolution.
-        /// </summary>
-        internal static string Msg_Resolution {
-            get {
-                return ResourceManager.GetString("Msg_Resolution", resourceCulture);
+                return ResourceManager.GetString("Msg_WhatIf", resourceCulture);
             }
         }
         

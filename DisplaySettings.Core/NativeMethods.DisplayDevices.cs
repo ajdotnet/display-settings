@@ -1,5 +1,6 @@
 // Source: https://github.com/ajdotnet/display-settings
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
@@ -8,10 +9,6 @@ namespace DisplaySettings.Core
 {
     static partial class NativeMethods
     {
-        [SuppressMessage("Microsoft.Globalization", "CA2101:SpecifyMarshalingForPInvokeStringArguments", MessageId = "0")]
-        [DllImport("user32.dll", CharSet = CharSet.Ansi)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool EnumDisplayDevices(string device, uint devNum, ref DISPLAY_DEVICE lpDisplayDevice, uint flags);
 
         public static IEnumerable<DISPLAY_DEVICE> QueryAllDisplayAdapters()
         {
@@ -25,7 +22,7 @@ namespace DisplaySettings.Core
                 // "unsichtbare" devices
                 if ((dd.StateFlags & DisplayDeviceStateFlags.AttachedToDesktop) == 0)
                     continue;
-            
+
                 yield return dd;
             }
         }
