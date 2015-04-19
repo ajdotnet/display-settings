@@ -22,20 +22,33 @@
 		<command:syntax>
 			<command:syntaxItem>
 				<maml:name>get-DisplaySettings</maml:name>
-				<command:parameter position="0" required="false" globbing="false" pipelineInput="false">
-					<maml:name>all</maml:name>
-				</command:parameter>
-			</command:syntaxItem>
+                <command:parameter position="0" required="false" globbing="false" pipelineInput="false">
+                    <maml:name>all</maml:name>
+                </command:parameter>
+                <command:parameter position="named" required="false" globbing="false" pipelineInput="false">
+                    <maml:name>device</maml:name>
+                    <command:parameterValue required="true">
+                        int32
+                    </command:parameterValue>
+                </command:parameter>
+            </command:syntaxItem>
 		</command:syntax>
 		<command:parameters>
-			<command:parameter position="0" required="false" globbing="false" pipelineInput="false">
-				<maml:name>all</maml:name>
-				<maml:description>
-					<maml:para>if specified, all available display settings are returned; if left out only the current display settings are displayed.</maml:para>
-					<dev:defaultValue>false</dev:defaultValue>
-				</maml:description>
-			</command:parameter>
-		</command:parameters>
+            <command:parameter position="0" required="false" globbing="false" pipelineInput="false">
+                <maml:name>all</maml:name>
+                <maml:description>
+                    <maml:para>If specified, all available display settings are returned; if left out only the current display settings are displayed.</maml:para>
+                </maml:description>
+                <dev:defaultValue>false</dev:defaultValue>
+            </command:parameter>
+            <command:parameter position="named" required="false" globbing="false" pipelineInput="false">
+                <maml:name>Device</maml:name>
+                <maml:description>
+                    <maml:para>Specifies the device number for multi-screen configurations.</maml:para>
+                </maml:description>
+                <dev:defaultValue>The current device number.</dev:defaultValue>
+            </command:parameter>
+        </command:parameters>
 		<command:inputTypes>
 			<command:inputType>
 				<dev:type>
@@ -49,38 +62,107 @@
 		<command:returnValues>
 			<command:returnValue>
 				<dev:type>
-					<maml:name>DisplaySettings.Core.DisplayData</maml:name>
+					<maml:name>DisplaySettings.PowerShell.CurrentDisplayOutput</maml:name>
 					<maml:description>
-						<maml:para>display data</maml:para>
+						<maml:para>Output for the current display settings; this includes resolution, color depth, frequency, and display name.</maml:para>
 					</maml:description>
 				</dev:type>
-				<maml:description>display data</maml:description>
+				<maml:description>current display information</maml:description>
 			</command:returnValue>
-		</command:returnValues>
+            <command:returnValue>
+                <dev:type>
+                    <maml:name>DisplaySettings.PowerShell.AllDisplayOutput</maml:name>
+                    <maml:description>
+                        <maml:para>Output for all posible display settings; this includes resolution, color depth, frequency, and a marker if this is the current setting.</maml:para>
+                    </maml:description>
+                </dev:type>
+                <maml:description>display list information</maml:description>
+            </command:returnValue>
+        </command:returnValues>
 		<maml:alertSet>
 			<maml:title>Current node</maml:title>
 			<maml:alert>
-				<maml:para>If used with -all, the current node is indocated qith an asterisk.</maml:para>
+				<maml:para>If used with -all, the current node is indicated with an asterisk.</maml:para>
 			</maml:alert>
 			<maml:title>Needed permssions</maml:title>
 			<maml:alert>
 				<maml:para>Necessary permissions have not been checked. If not met, this will likely produce an error.</maml:para>
 			</maml:alert>
-			<maml:title>multiple displays</maml:title>
-			<maml:alert>
-				<maml:para>Multiple displays and projectors not yet tested (much less supported ;-))</maml:para>
-			</maml:alert>
 		</maml:alertSet>
 		<!--<command:examples>
 		</command:examples>-->
 		<maml:relatedLinks>
-			<maml:navigationLink>
-				<maml:linkText>set-DisplaySettings</maml:linkText>
-			</maml:navigationLink>
-		</maml:relatedLinks>
+            <maml:navigationLink>
+                <maml:linkText>get-DisplayDevices</maml:linkText>
+            </maml:navigationLink>
+            <maml:navigationLink>
+                <maml:linkText>set-DisplaySettings</maml:linkText>
+            </maml:navigationLink>
+        </maml:relatedLinks>
 	</command:command>
 
-	<!-- 
+    <!-- 
+			get-displaydevices
+	-->
+    <command:command>
+        <command:details>
+            <command:name>get-DisplayDevices</command:name>
+            <command:verb>get</command:verb>
+            <command:noun>DisplayDevices</command:noun>
+            <maml:description>
+                <maml:para>Gets all available display devices, i.e. combinations of adapter and monitor.</maml:para>
+            </maml:description>
+        </command:details>
+        <maml:description>
+            <maml:para>Gets all available display devices, i.e. combinations of adapter and monitor.</maml:para>
+        </maml:description>
+        <command:syntax>
+            <command:syntaxItem>
+                <maml:name>get-DisplayDevices</maml:name>
+            </command:syntaxItem>
+        </command:syntax>
+        <command:parameters>
+        </command:parameters>
+        <command:inputTypes>
+            <command:inputType>
+                <dev:type>
+                    <maml:name>none.</maml:name>
+                    <maml:description>
+                        <maml:para>No values taken from the pipeline.</maml:para>
+                    </maml:description>
+                </dev:type>
+            </command:inputType>
+        </command:inputTypes>
+        <command:returnValues>
+            <command:returnValue>
+                <dev:type>
+                    <maml:name>DisplaySettings.PowerShell.ScreenOutput</maml:name>
+                    <maml:description>
+                        <maml:para>Output for the available screens; this includes number, adapter, monitor, and a marker if this is the primary screen.</maml:para>
+                    </maml:description>
+                </dev:type>
+                <maml:description>Screen information</maml:description>
+            </command:returnValue>
+        </command:returnValues>
+        <maml:alertSet>
+            <maml:title>Needed permssions</maml:title>
+            <maml:alert>
+                <maml:para>Necessary permissions have not been checked. If not met, this will likely produce an error.</maml:para>
+            </maml:alert>
+        </maml:alertSet>
+        <!--<command:examples>
+		</command:examples>-->
+        <maml:relatedLinks>
+            <maml:navigationLink>
+                <maml:linkText>get-DisplaySettings</maml:linkText>
+            </maml:navigationLink>
+            <maml:navigationLink>
+                <maml:linkText>set-DisplaySettings</maml:linkText>
+            </maml:navigationLink>
+        </maml:relatedLinks>
+    </command:command>
+
+    <!-- 
 			set-displaysettings 
 	-->
 	<command:command>
@@ -114,7 +196,13 @@
 					<maml:name>frequency</maml:name>
 					<command:parameterValue required="true">int32</command:parameterValue>
 				</command:parameter>
-			</command:syntaxItem>
+                <command:parameter position="named" required="false" globbing="false" pipelineInput="false">
+                    <maml:name>device</maml:name>
+                    <command:parameterValue required="true">
+                        int32
+                    </command:parameterValue>
+                </command:parameter>
+            </command:syntaxItem>
 		</command:syntax>
 		<command:parameters>
 			<command:parameter required="true" position="0" globbing="false" pipelineInput="false">
@@ -167,7 +255,14 @@
 				<command:parameterValue required="true">int32</command:parameterValue>
 				<dev:defaultValue>The current screen refresh rate.</dev:defaultValue>
 			</command:parameter>
-		</command:parameters>
+            <command:parameter position="named" required="false" globbing="false" pipelineInput="false">
+                <maml:name>Device</maml:name>
+                <maml:description>
+                    <maml:para>Specifies the device number for multi-screen configurations.</maml:para>
+                </maml:description>
+                <dev:defaultValue>The current device number.</dev:defaultValue>
+            </command:parameter>
+        </command:parameters>
 		<command:inputTypes>
 			<command:inputType>
 				<dev:type>
@@ -198,17 +293,16 @@
 			<maml:alert>
 				<maml:para>Necessary permissions have not been checked. If not met, this will likely produce an error.</maml:para>
 			</maml:alert>
-			<maml:title>multiple displays</maml:title>
-			<maml:alert>
-				<maml:para>Multiple displays and projectors not yet tested (much less supported ;-))</maml:para>
-			</maml:alert>
 		</maml:alertSet>
 		<!--<command:examples>
 		</command:examples>-->
 		<maml:relatedLinks>
-			<maml:navigationLink>
-				<maml:linkText>get-DisplaySettings</maml:linkText>
-			</maml:navigationLink>
-		</maml:relatedLinks>
+            <maml:navigationLink>
+                <maml:linkText>get-DisplaySettings</maml:linkText>
+            </maml:navigationLink>
+            <maml:navigationLink>
+                <maml:linkText>get-DisplayDevices</maml:linkText>
+            </maml:navigationLink>
+        </maml:relatedLinks>
 	</command:command>
 </helpItems>

@@ -8,13 +8,13 @@ namespace DisplaySettings.PowerShell
 {
     static class Mapper
     {
-        public static SingleDisplayOutput ToOutput(this DisplayData data, DeviceScreen screen)
+        public static CurrentDisplayOutput ToOutput(this DisplayData data, DeviceScreen screen)
         {
-            return new SingleDisplayOutput(data, screen);
+            return new CurrentDisplayOutput(data, screen);
         }
-        public static IEnumerable<ListDisplayOutput> ToOutput(this IEnumerable<DisplayData> datas, DeviceScreen screen)
+        public static IEnumerable<AllDisplayOutput> ToOutput(this IEnumerable<DisplayData> datas, DeviceScreen screen)
         {
-            return datas.Select(data => new ListDisplayOutput(data));
+            return datas.Select(data => new AllDisplayOutput(data));
         }
         public static IEnumerable<ScreenOutput> ToOutput(this IEnumerable<DeviceScreen> screens)
         {
@@ -22,12 +22,12 @@ namespace DisplaySettings.PowerShell
         }
     }
 
-    public class SingleDisplayOutput
+    public class CurrentDisplayOutput
     {
         DisplayData _data;
         DeviceScreen _screen;
 
-        public SingleDisplayOutput(DisplayData data, DeviceScreen screen)
+        public CurrentDisplayOutput(DisplayData data, DeviceScreen screen)
         {
             _data = data;
             _screen = screen;
@@ -48,11 +48,11 @@ namespace DisplaySettings.PowerShell
         }
     }
 
-    public class ListDisplayOutput
+    public class AllDisplayOutput
     {
         DisplayData _data;
 
-        public ListDisplayOutput(DisplayData data)
+        public AllDisplayOutput(DisplayData data)
         {
             _data = data;
         }

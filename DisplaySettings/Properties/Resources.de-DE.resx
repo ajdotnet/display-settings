@@ -128,7 +128,7 @@
     <data name="Msg_Resolution" xml:space="preserve"><value>Auflösung</value></data>
     <data name="Msg_ColorDepth" xml:space="preserve"><value>Farbtiefe</value></data>
     <data name="Msg_ColorDepthUnit" xml:space="preserve"><value>Bit/Pixel</value></data>
-    <data name="Msg_RefreshRate" xml:space="preserve"><value>Bildwiederholrate</value></data>
+    <data name="Msg_RefreshRate" xml:space="preserve"><value>Bildschirmaktualisierungsrate</value></data>
     <data name="Msg_Position" xml:space="preserve"><value>Position</value></data>
 
     <data name="Msg_Header_DisplayAdapters" xml:space="preserve"><value>Anzeigen</value></data>

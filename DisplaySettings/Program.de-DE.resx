@@ -114,7 +114,7 @@
     xres                Horizontale Auflösung
     yres                Vertikale Auflösung
     Farbtiefe           Farben in Bit (8, 16, 32)
-    Frequenz            Bildwiederholrate
+    Frequenz            Bildschirmaktualisierungsrate
     Gerät               Gerätenummer, wie sie von /queryDevices gemeldet wird.
 </value>
 	</data>
