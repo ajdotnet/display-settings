@@ -8,6 +8,8 @@ This also serves as an example on how command line applications and PowerShell p
 The current feature set is as follows:
 - get current and available resolutions
 - set current resolution
+- get and address available screens for multi-monitor configurations
+- localizations for en-US and de-DE.
 
 ### Command line 
 
@@ -80,6 +82,7 @@ Essentially:
 - You want to use the module "productively", you copy everything to `%userprofile%\Documents\WindowsPowershell\Modules\DisplaySettings\`.
 Load the module using `Import-Module DisplaySettings`.
 
+Additionally I have added multi-monitor support and proper localizations for en-US and de-DE.
 
 ## background
 
