@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<helpItems xmlns="http://msh" schema="maml"
+		   xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+		   xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+		   xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+
+    <!-- 
+			get-displaysettings 
+	-->
+    <command:command>
+        <command:details>
+            <command:name>get-DisplaySettings</command:name>
+            <command:verb>get</command:verb>
+            <command:noun>DisplaySettings</command:noun>
+            <maml:description>
+                <maml:para>Liefert die aktuelle oder alle Bildschirmauflösungen.</maml:para>
+            </maml:description>
+        </command:details>
+        <maml:description>
+            <maml:para>Liest die aktuelle oder (falls Parameter -all angegeben ist) alle Bildschirmauflösungen.</maml:para>
+        </maml:description>
+        <command:syntax>
+            <command:syntaxItem>
+                <maml:name>get-DisplaySettings</maml:name>
+                <command:parameter position="0" required="false" globbing="false" pipelineInput="false">
+                    <maml:name>all</maml:name>
+                </command:parameter>
+                <command:parameter position="named" required="false" globbing="false" pipelineInput="false">
+                    <maml:name>device</maml:name>
+                    <command:parameterValue required="true">
+                        int32
+                    </command:parameterValue>
+            </command:parameter>
+            </command:syntaxItem>
+        </command:syntax>
+        <command:parameters>
+            <command:parameter position="0" required="false" globbing="false" pipelineInput="false">
+                <maml:name>all</maml:name>
+                <maml:description>
+                    <maml:para>Wenn angegeben werden alle verfügbaren Bildschirmauflösungen ausgegeben; falls nicht wird die aktuelle Bildschirmauflösung ausgegeben.</maml:para>
+                </maml:description>
+                <dev:defaultValue>false</dev:defaultValue>
+            </command:parameter>
+            <command:parameter position="named" required="false" globbing="false" pipelineInput="false">
+                <maml:name>Device</maml:name>
+                <maml:description>
+                    <maml:para>Gibt die Nummer des Bildschirms bei meheren Bidlschirmen an.</maml:para>
+                </maml:description>
+                <dev:defaultValue>Die Nummer des aktuellen Bildschirms.</dev:defaultValue>
+            </command:parameter>
+        </command:parameters>
+        <command:inputTypes>
+            <command:inputType>
+                <dev:type>
+                    <maml:name>Keine.</maml:name>
+                    <maml:description>
+                        <maml:para>Es werden keine Werte aus der Pipeline übernommen.</maml:para>
+                    </maml:description>
+                </dev:type>
+            </command:inputType>
+        </command:inputTypes>
+        <command:returnValues>
+            <command:returnValue>
+                <dev:type>
+                    <maml:name>DisplaySettings.PowerShell.CurrentDisplayOutput</maml:name>
+                    <maml:description>
+                        <maml:para>Information zur aktuellen Bildschirmauflösung; enthalten sind Auflösung, Bildschirmaktualisierungsrate, Farbtiefe und Bildschirmnummer und -bezeichnung.</maml:para>
+                    </maml:description>
+                </dev:type>
+                <maml:description>Information zur aktuellen Bildschirmauflösung.</maml:description>
+            </command:returnValue>
+            <command:returnValue>
+                <dev:type>
+                    <maml:name>DisplaySettings.PowerShell.AllDisplayOutput</maml:name>
+                    <maml:description>
+                        <maml:para>Information zu den verfügbaren Bildschirmauflösungen;enthalten sind Auflösung, Bildschirmaktualisierungsrate, Farbtiefe und ein Vermerk, ob dies die aktuelle Einstellung ist.</maml:para>
+                    </maml:description>
+                </dev:type>
+                <maml:description>Information zu den verfügbaren Bildschirmauflösungen.</maml:description>
+            </command:returnValue>
+        </command:returnValues>
+        <maml:alertSet>
+            <maml:title>Benötigte Berechtigungen</maml:title>
+            <maml:alert>
+                <maml:para>Benötigte Berechtigungen werden nicht geprüft: fehlende Berechtigunegn führen vermultich zu Abstürzen...</maml:para>
+            </maml:alert>
+        </maml:alertSet>
+        <!--<command:examples>
+		</command:examples>-->
+        <maml:relatedLinks>
+            <maml:navigationLink>
+                <maml:linkText>get-DisplayDevices</maml:linkText>
+            </maml:navigationLink>
+            <maml:navigationLink>
+                <maml:linkText>set-DisplaySettings</maml:linkText>
+            </maml:navigationLink>
+        </maml:relatedLinks>
+    </command:command>
+
+    <!-- 
+			get-displaydevices
+	-->
+    <command:command>
+        <command:details>
+            <command:name>get-DisplayDevices</command:name>
+            <command:verb>get</command:verb>
+            <command:noun>DisplayDevices</command:noun>
+            <maml:description>
+                <maml:para>Liefert die verfügbaren Bildschirme, d.h. die jeweilige Kombination aus Grafikkarte und Monitor.</maml:para>
+            </maml:description>
+        </command:details>
+        <maml:description>
+            <maml:para>Liefert die verfügbaren Bildschirme, d.h. die jeweilige Kombination aus Grafikkarte und Monitor.</maml:para>
+        </maml:description>
+        <command:syntax>
+            <command:syntaxItem>
+                <maml:name>get-DisplayDevices</maml:name>
+            </command:syntaxItem>
+        </command:syntax>
+        <command:parameters>
+        </command:parameters>
+        <command:inputTypes>
+            <command:inputType>
+                <dev:type>
+                    <maml:name>Keine.</maml:name>
+                    <maml:description>
+                        <maml:para>Es werden keine Werte aus der Pipeline übernommen.</maml:para>
+                    </maml:description>
+                </dev:type>
+            </command:inputType>
+        </command:inputTypes>
+        <command:returnValues>
+            <command:returnValue>
+                <dev:type>
+                    <maml:name>DisplaySettings.PowerShell.ScreenOutput</maml:name>
+                    <maml:description>
+                        <maml:para>Ausgabe der verfügbaren Bildschirme; entahlten sind Nummer, Grafikkarte, Monitor, und ein Hinweis, ob dies die Hauptanzeige ist.</maml:para>
+                    </maml:description>
+                </dev:type>
+                <maml:description>Verfügbare Bildschirme</maml:description>
+            </command:returnValue>
+        </command:returnValues>
+        <maml:alertSet>
+            <maml:title>Benötigte Berechtigungen</maml:title>
+            <maml:alert>
+                <maml:para>Benötigte Berechtigungen werden nicht geprüft: fehlende Berechtigunegn führen vermultich zu Abstürzen...</maml:para>
+            </maml:alert>
+        </maml:alertSet>
+        <!--<command:examples>
+		</command:examples>-->
+        <maml:relatedLinks>
+            <maml:navigationLink>
+                <maml:linkText>get-DisplaySettings</maml:linkText>
+            </maml:navigationLink>
+            <maml:navigationLink>
+                <maml:linkText>set-DisplaySettings</maml:linkText>
+            </maml:navigationLink>
+        </maml:relatedLinks>
+    </command:command>
+
+    <!-- 
+			set-displaysettings 
+	-->
+    <command:command>
+        <command:details>
+            <command:name>set-DisplaySettings</command:name>
+            <command:verb>set</command:verb>
+            <command:noun>DisplaySettings</command:noun>
+            <maml:description>
+                <maml:para>Ändert die Bildschirmauflösung.</maml:para>
+            </maml:description>
+        </command:details>
+        <maml:description>
+            <maml:para>Ändert die Bildschirmauflösung. Diese Aktion ändert Systemeinstellungen und kann mit -WhatIf und -Force versehen werden.</maml:para>
+        </maml:description>
+        <command:syntax>
+            <command:syntaxItem>
+                <maml:name>set-DisplaySettings</maml:name>
+                <command:parameter position="0" required="true" globbing="false" pipelineInput="false">
+                    <maml:name>width</maml:name>
+                    <command:parameterValue required="true">int32</command:parameterValue>
+                </command:parameter>
+                <command:parameter position="1" required="true" globbing="false" pipelineInput="false">
+                    <maml:name>height</maml:name>
+                    <command:parameterValue required="true">int32</command:parameterValue>
+                </command:parameter>
+                <command:parameter position="2" required="false" globbing="false" pipelineInput="false">
+                    <maml:name>colordepth</maml:name>
+                    <command:parameterValue required="true">int32</command:parameterValue>
+                </command:parameter>
+                <command:parameter position="3" required="false" globbing="false" pipelineInput="false">
+                    <maml:name>frequency</maml:name>
+                    <command:parameterValue required="true">int32</command:parameterValue>
+                </command:parameter>
+                <command:parameter position="named" required="false" globbing="false" pipelineInput="false">
+                    <maml:name>device</maml:name>
+                    <command:parameterValue required="true">
+                        int32
+                    </command:parameterValue>
+                </command:parameter>
+            </command:syntaxItem>
+        </command:syntax>
+        <command:parameters>
+            <command:parameter required="true" position="0" globbing="false" pipelineInput="false">
+                <maml:name>width</maml:name>
+                <maml:description>
+                    <maml:para>Die Breite der gewünschten Auflösung.</maml:para>
+                </maml:description>
+                <command:parameterValue required="true">in32</command:parameterValue>
+            </command:parameter>
+            <command:parameter required="true" position="1" globbing="false" pipelineInput="false">
+                <maml:name>height</maml:name>
+                <maml:description>
+                    <maml:para>Die Höhe der gewünschten Auflösung.</maml:para>
+                </maml:description>
+                <command:parameterValue required="true">int32</command:parameterValue>
+            </command:parameter>
+            <command:parameter required="false" position="2" globbing="false" pipelineInput="false">
+                <maml:name>colorDepth</maml:name>
+                <maml:description>
+                    <maml:para>Die Farbtiefe (Bits pro Pixel) der gewünschten Auflösung.</maml:para>
+                </maml:description>
+                <command:parameterValue required="true">int32</command:parameterValue>
+                <dev:defaultValue>Die aktuelle Farbtiefe.</dev:defaultValue>
+                <dev:possibleValues>
+                    <dev:possibleValue>
+                        <dev:value>8</dev:value>
+                        <maml:description>
+                            <maml:para>8 bpp</maml:para>
+                        </maml:description>
+                    </dev:possibleValue>
+                    <dev:possibleValue>
+                        <dev:value>16</dev:value>
+                        <maml:description>
+                            <maml:para>16 bps</maml:para>
+                        </maml:description>
+                    </dev:possibleValue>
+                    <dev:possibleValue>
+                        <dev:value>32</dev:value>
+                        <maml:description>
+                            <maml:para>32 bps</maml:para>
+                        </maml:description>
+                    </dev:possibleValue>
+                </dev:possibleValues>
+            </command:parameter>
+            <command:parameter required="false" position="3" globbing="false" pipelineInput="false">
+                <maml:name>frequency</maml:name>
+                <maml:description>
+                    <maml:para>Die Bildschirmaktualisierungsrate der gewünschten Auflösung (in Hertz).</maml:para>
+                </maml:description>
+                <command:parameterValue required="true">int32</command:parameterValue>
+                <dev:defaultValue>The aktuelle Bildschirmaktualisierungsrate.</dev:defaultValue>
+            </command:parameter>
+            <command:parameter position="named" required="false" globbing="false" pipelineInput="false">
+                <maml:name>Device</maml:name>
+                <maml:description>
+                    <maml:para>Die Nummer des Bildschirms bei meheren Möglichkeiten.</maml:para>
+                </maml:description>
+                <dev:defaultValue>Die Nummer des aktuellen Bildschirms.</dev:defaultValue>
+            </command:parameter>
+        </command:parameters>
+        <command:inputTypes>
+            <command:inputType>
+                <dev:type>
+                    <maml:name>Keine.</maml:name>
+                    <maml:description>
+                        <maml:para>Es werden keine Werte aus der Pipeline übernommen.</maml:para>
+                    </maml:description>
+                </dev:type>
+            </command:inputType>
+        </command:inputTypes>
+        <command:returnValues>
+            <command:returnValue>
+                <dev:type>
+                    <maml:name>Keine.</maml:name>
+                    <maml:description>
+                        <maml:para>Es werden keine Werte in die Pipeline geschrieben.</maml:para>
+                    </maml:description>
+                </dev:type>
+                <maml:description>Es werden keine Werte in die Pipeline geschrieben.</maml:description>
+            </command:returnValue>
+        </command:returnValues>
+        <maml:alertSet>
+            <maml:title>Ungültige Kombinationen</maml:title>
+            <maml:alert>
+                <maml:para>Es werden nur gültige Kombinationen von Werten gesetzt; andere Kombinationen werden geprüft und abgelehnt.</maml:para>
+            </maml:alert>
+            <maml:title>Benötigte Berechtigungen</maml:title>
+            <maml:alert>
+                <maml:para>Benötigte Berechtigungen werden nicht geprüft: fehlende Berechtigunegn führen vermultich zu Abstürzen...</maml:para>
+            </maml:alert>
+        </maml:alertSet>
+        <!--<command:examples>
+		</command:examples>-->
+        <maml:relatedLinks>
+            <maml:navigationLink>
+                <maml:linkText>get-DisplaySettings</maml:linkText>
+            </maml:navigationLink>
+            <maml:navigationLink>
+                <maml:linkText>get-DisplayDevices</maml:linkText>
+            </maml:navigationLink>
+        </maml:relatedLinks>
+    </command:command>
+</helpItems>
