@@ -51,6 +51,8 @@
     <Compile Include="DeviceData.cs" />
     <Compile Include="DisplayData.cs" />
     <Compile Include="DisplayLogic.cs" />
+    <Compile Include="NativeMethods.POINT.cs" />
+    <Compile Include="NativeMethods.WINDOWPLACEMENT.cs" />
     <Compile Include="NativeMethods.RECT.cs" />
     <Compile Include="NativeMethods.Pinvoke.cs" />
     <Compile Include="NativeMethods.DisplaySettings.cs" />

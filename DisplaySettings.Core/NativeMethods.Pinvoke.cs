@@ -51,9 +51,13 @@ namespace DisplaySettings.Core
         [DllImport("kernel32.dll")]
         public static extern IntPtr GetConsoleWindow();
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall, ExactSpelling = true, SetLastError = true)]
+        //[DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall, ExactSpelling = true, SetLastError = true)]
+        //[return: MarshalAs(UnmanagedType.Bool)]
+        //public static extern bool GetWindowRect(IntPtr hWnd, ref RECT rect);
+
+        [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetWindowRect(IntPtr hWnd, ref RECT rect);
+        internal static extern bool GetWindowPlacement(IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
 
         [SuppressMessage("Microsoft.Globalization", "CA2101:SpecifyMarshalingForPInvokeStringArguments", MessageId = "0")]
         [DllImport("user32.dll", CharSet = CharSet.Ansi)]

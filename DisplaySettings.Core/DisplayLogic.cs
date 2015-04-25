@@ -4,6 +4,7 @@ using AJ.Common;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace DisplaySettings.Core
 {
@@ -70,9 +71,13 @@ namespace DisplaySettings.Core
         public static int GetCurrentDeviceNumber()
         {
             // get console window rect
-            var rect = new NativeMethods.RECT();
             var hwnd = NativeMethods.GetConsoleWindow();
-            NativeMethods.GetWindowRect(hwnd, ref rect);
+            // GetWindowRect fails on minimized windows with -32000/-32000
+            // http://blogs.msdn.com/b/oldnewthing/archive/2004/10/28/249044.aspx
+            var wp= new NativeMethods.WINDOWPLACEMENT();
+            wp.Length= Marshal.SizeOf(wp);
+            NativeMethods.GetWindowPlacement(hwnd, ref wp);
+            var rect = wp.NormalPosition;
 
             // go through all adapters...
             var adapters = NativeMethods.QueryAllDisplayAdapters();

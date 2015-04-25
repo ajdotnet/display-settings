@@ -6,7 +6,7 @@ namespace DisplaySettings.Core
 {
     static partial class NativeMethods
     {
-        [DebuggerDisplay("{Left} x {Top} / {Right} x {Bottom}")]
+        [DebuggerDisplay("{Left},{Top} / {Right},{Bottom}")]
         public struct RECT
         {
             public int Left;
