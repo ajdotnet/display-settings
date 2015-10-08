@@ -53,8 +53,6 @@ namespace DisplaySettings.Tests
                 var err = DisplayLogic.ChangeSettings(testDS, out errorMessage);
                 Thread.Sleep(5000);
                 Assert.AreEqual(0, err);
-                Assert.IsTrue(string.IsNullOrEmpty(errorMessage));
-
 
                 var newDS = DisplayLogic.QueryCurrentDisplaySettings();
                 Assert.IsTrue(DisplayData.AreEqual(newDS, testDS));

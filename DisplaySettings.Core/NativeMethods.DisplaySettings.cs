@@ -13,6 +13,7 @@ namespace DisplaySettings.Core
         {
             DEVMODE dm = new DEVMODE();
             dm.dmSize = (ushort)Marshal.SizeOf(dm);
+            // Note: starting with windows 10, this call returns the device name in uppercase (while enumerating all settings still returns lowercase!)
             EnumDisplaySettings(deviceName, ENUM_CURRENT_SETTINGS, ref dm);
             return dm;
         }
@@ -23,6 +24,7 @@ namespace DisplaySettings.Core
             dm.dmSize = (ushort)Marshal.SizeOf(dm);
             for (int i = 0; EnumDisplaySettings(deviceName, i, ref dm) != 0; ++i)
             {
+                // Note: with windows 10, this call returns the device names in lowercae as before (while getting the current settings returns it in uppercase!)
                 yield return dm;
             }
         }
@@ -55,7 +57,7 @@ namespace DisplaySettings.Core
                     && x.dmPelsWidth == y.dmPelsWidth
                     && x.dmBitsPerPel == y.dmBitsPerPel
                     && x.dmDisplayFrequency == y.dmDisplayFrequency
-                    && x.dmDeviceName == y.dmDeviceName)
+                    && (string.Compare(x.dmDeviceName, y.dmDeviceName, StringComparison.OrdinalIgnoreCase) == 0))  // see windows 10 notes above
                 return true;
             return false;
         }
@@ -78,12 +80,5 @@ namespace DisplaySettings.Core
                 (rect.Left <= test.Left) && (test.Left <= rect.Right) &&
                 (rect.Top <= test.Top) && (test.Top <= rect.Bottom);
         }
-
-        //public static bool IntersectsWith(this RECT rect, RECT test)
-        //{
-        //    return
-        //        (rect.Left < test.Right) && (test.Left < rect.Right) &&
-        //        (rect.Top < test.Bottom) && (test.Top < rect.Bottom);
-        //}
     }
 }

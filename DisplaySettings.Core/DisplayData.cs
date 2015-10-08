@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace DisplaySettings.Core
 {
-    [DebuggerDisplay("{Width} x {Height}, {ColorDepth} bpp, {ScreenRefreshRate} Hz")]
+    [DebuggerDisplay("{Width} x {Height}, {ColorDepth} bpp, {ScreenRefreshRate} Hz, DeviceName={_Data.dmDeviceName}")]
     public class DisplayData
     {
         NativeMethods.DEVMODE _Data;

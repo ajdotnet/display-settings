@@ -1,6 +1,7 @@
 // Source: https://github.com/ajdotnet/display-settings
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
@@ -94,6 +95,7 @@ namespace DisplaySettings.Core
         // https://msdn.microsoft.com/en-us/library/windows/desktop/dd183565(v=vs.85).aspx
         [SuppressMessage("Microsoft.Portability", "CA1900:ValueTypeFieldsShouldBePortable", MessageId = "dmFormName")]
         [StructLayout(LayoutKind.Sequential)]
+        [DebuggerDisplay("{dmPelsWidth} x {dmPelsHeight}, {dmBitsPerPel} bpp, {dmDisplayFrequency} Hz, dmDeviceName={dmDeviceName}")]
         public struct DEVMODE
         {
             public const int CCHDEVICENAME = 32;
