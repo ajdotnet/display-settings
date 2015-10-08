@@ -6,7 +6,6 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Management.Automation;
-using System.Windows.Forms;
 
 namespace DisplaySettings.PowerShell
 {

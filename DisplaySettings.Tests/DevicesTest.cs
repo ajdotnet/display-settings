@@ -20,7 +20,7 @@ namespace DisplaySettings.Tests
         [TestMethod]
         public void Test_QueryDeviceDisplaySettings()
         {
-            var devices = DisplayLogic.QueryDevices().ToArray();
+            var devices = DisplayLogic.QueryDevices().Where(d => d.IsAdapter).ToArray();
             foreach (var device in devices)
             {
                 var modes = DisplayLogic.QueryAllDisplaySettings(device.DeviceName).ToArray();
