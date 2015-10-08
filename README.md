@@ -87,13 +87,12 @@ Additionally I have added multi-monitor support and proper localizations for en-
 ## Windows 10
 
 After updating to Windows 10 my application did no longer work. Turns out there were several issues:
-1. Querying the current mode now returned the device name in uppercase letters ("CCD"), while enumerationg all modes still returned it lowercase ("ccd").
-2. Building the powershell project now rsulted in an error:
+- Querying the current mode now returned the device name in uppercase letters ("CDD"), while enumerationg all modes still returned it lowercase ("cdd").
+- Building the powershell project now resulted in an error:
 ```
 1>C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1697,5): warning MSB3275: The primary reference "System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" could not be resolved because it has an indirect dependency on the assembly "Microsoft.Management.Infrastructure.Native, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" which was built against the ".NETFramework,Version=v4.5" framework. This is a higher version than the currently targeted framework ".NETFramework,Version=v4.0".
 ```
-I Checked. Runtime version of that assembly was still "v4.0.30319". Except, it was no longer offered in the "add reference" dialog. 
-Anyway, setting the target framework to 4.5 solved the issue.
+I Checked. Runtime version of that assembly was still "v4.0.30319". Anyway, setting the target framework to 4.5 solved the issue.
 
 ## background
 
